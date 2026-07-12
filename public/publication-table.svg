@@ -1,0 +1,10 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#FDFBF6"/>
+  <rect x="118" y="142" width="404" height="64" rx="8" fill="#A1452E"/>
+  <path d="M166 206L116 330" stroke="#193F3A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M474 206L524 330" stroke="#193F3A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M245 206L214 330" stroke="#193F3A" stroke-width="14" stroke-linecap="round"/>
+  <path d="M395 206L426 330" stroke="#193F3A" stroke-width="14" stroke-linecap="round"/>
+  <rect x="88" y="70" width="464" height="48" rx="8" fill="#E8F1DF"/>
+  <text x="320" y="102" fill="#193F3A" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="middle">Mesa para trueque</text>
+</svg>

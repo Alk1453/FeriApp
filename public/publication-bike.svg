@@ -1,0 +1,11 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F5F1E8"/>
+  <circle cx="205" cy="284" r="70" fill="#E8F1DF" stroke="#193F3A" stroke-width="14"/>
+  <circle cx="435" cy="284" r="70" fill="#E8F1DF" stroke="#193F3A" stroke-width="14"/>
+  <path d="M205 284L285 176H366L435 284H312L205 284Z" stroke="#A1452E" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M285 176L320 284L366 176" stroke="#A1452E" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M352 144H410" stroke="#193F3A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M278 144H230" stroke="#193F3A" stroke-width="16" stroke-linecap="round"/>
+  <rect x="72" y="58" width="496" height="64" rx="8" fill="#193F3A"/>
+  <text x="320" y="100" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" text-anchor="middle">Bicicleta urbana</text>
+</svg>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getNearbyListings } from "@/modules/marketplace/application/get-nearby-listings";
 import {
   getExpansionModules,
@@ -69,9 +70,12 @@ export default function Home() {
                   Compra, cambia, dona y descubre oportunidades cerca de casa.
                 </h2>
               </div>
-              <button className="h-11 w-full rounded-md bg-[#a1452e] px-4 text-sm font-bold text-white transition hover:bg-[#843625] sm:w-fit">
+              <Link
+                className="flex h-11 w-full items-center justify-center rounded-md bg-[#a1452e] px-4 text-sm font-bold text-white transition hover:bg-[#843625] sm:w-fit"
+                href="/publicaciones/nueva"
+              >
                 Publicar ahora
-              </button>
+              </Link>
             </div>
 
             <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_140px]">
@@ -128,9 +132,12 @@ export default function Home() {
                     </div>
                     <div className="flex items-center justify-between gap-4 md:flex-col md:items-end">
                       <strong className="text-lg">{item.priceLabel}</strong>
-                      <button className="rounded-md border border-[#cfc3b0] px-3 py-2 text-sm font-bold hover:bg-[#f5f1e8]">
-                        Compartir
-                      </button>
+                      <Link
+                        className="rounded-md border border-[#cfc3b0] px-3 py-2 text-sm font-bold hover:bg-[#f5f1e8]"
+                        href={`/publicaciones/${item.slug}`}
+                      >
+                        Ver
+                      </Link>
                     </div>
                   </article>
                 ))}
