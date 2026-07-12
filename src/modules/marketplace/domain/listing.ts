@@ -27,8 +27,9 @@ export type ListingSummary = {
 };
 
 export type PublicationContact = {
-  preferredChannel: "whatsapp" | "in-app" | "phone";
+  preferredChannel: "whatsapp" | "in-app" | "phone" | "feriapp-mediated";
   label: string;
+  monetizationSignal: "direct" | "lead" | "transaction" | "subscription";
 };
 
 export type Publication = ListingSummary & {

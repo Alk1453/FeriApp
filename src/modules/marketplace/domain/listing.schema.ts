@@ -35,10 +35,37 @@ export const publicationSchema = listingSummarySchema.extend({
   imageUrl: z.string().min(1),
   shareUrl: z.string().min(1),
   contact: z.object({
-    preferredChannel: z.enum(["whatsapp", "in-app", "phone"]),
+    preferredChannel: z.enum(["whatsapp", "in-app", "phone", "feriapp-mediated"]),
     label: z.string().min(1),
+    monetizationSignal: z.enum(["direct", "lead", "transaction", "subscription"]),
   }),
   publicNotes: z.array(z.string().min(1)),
 });
 
 export const publicationListSchema = z.array(publicationSchema);
+
+export const publicationDraftSchema = z.object({
+  title: z.string().min(3, "El titulo necesita al menos 3 caracteres."),
+  description: z
+    .string()
+    .min(20, "La descripcion necesita al menos 20 caracteres."),
+  kind: z.enum(["sale", "barter", "donation", "gift", "service"]),
+  category: z.enum([
+    "home",
+    "transport",
+    "books",
+    "clothing",
+    "tools",
+    "services",
+    "other",
+  ]),
+  priceLabel: z.string().min(1, "Indica precio, gratis o condicion."),
+  locality: z.string().min(2, "Indica la localidad."),
+  neighborhood: z.string().min(2, "Indica el barrio visible."),
+  imageCount: z.number().min(0).max(6),
+  contact: z.object({
+    preferredChannel: z.enum(["whatsapp", "in-app", "phone", "feriapp-mediated"]),
+    label: z.string().min(1),
+    monetizationSignal: z.enum(["direct", "lead", "transaction", "subscription"]),
+  }),
+});

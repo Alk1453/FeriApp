@@ -25,6 +25,7 @@ const publications = [
     contact: {
       preferredChannel: "whatsapp",
       label: "Coordinar por WhatsApp",
+      monetizationSignal: "direct",
     },
     publicNotes: [
       "La ubicacion exacta se comparte solo si ambas partes acuerdan.",
@@ -54,6 +55,7 @@ const publications = [
     contact: {
       preferredChannel: "in-app",
       label: "Enviar propuesta",
+      monetizationSignal: "lead",
     },
     publicNotes: [
       "Publicacion orientada a economia circular.",
@@ -83,6 +85,7 @@ const publications = [
     contact: {
       preferredChannel: "phone",
       label: "Consultar disponibilidad",
+      monetizationSignal: "direct",
     },
     publicNotes: [
       "Prioridad para vecinos cercanos.",
