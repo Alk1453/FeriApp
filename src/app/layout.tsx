@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://feriapp.local"),
+  metadataBase: new URL("https://feri-app-kappa.vercel.app"),
   title: "FeriApp",
   description:
     "La feria digital de tu barrio para compraventa, trueque, donaciones y comunidad local.",

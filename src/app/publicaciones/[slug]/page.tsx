@@ -6,6 +6,11 @@ import {
   getPublicationBySlug,
   getPublications,
 } from "@/modules/marketplace/application/get-publications";
+import {
+  getPublicationAbsoluteUrl,
+  getPublicationShareLinks,
+} from "@/modules/marketplace/application/get-publication-share-links";
+import { PublicationSharePanel } from "./publication-share-panel";
 
 type PublicationDetailPageProps = {
   params: Promise<{
@@ -31,13 +36,33 @@ export async function generateMetadata({
     };
   }
 
+  const absoluteUrl = getPublicationAbsoluteUrl(publication);
+
   return {
     title: `${publication.title} | FeriApp`,
     description: publication.description,
+    alternates: {
+      canonical: absoluteUrl,
+    },
     openGraph: {
       title: publication.title,
       description: publication.description,
       type: "article",
+      url: absoluteUrl,
+      siteName: "FeriApp",
+      images: [
+        {
+          url: publication.imageUrl,
+          width: 640,
+          height: 420,
+          alt: publication.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: publication.title,
+      description: publication.description,
       images: [publication.imageUrl],
     },
   };
@@ -52,6 +77,8 @@ export default async function PublicationDetailPage({
   if (!publication) {
     notFound();
   }
+
+  const shareLinks = getPublicationShareLinks(publication);
 
   return (
     <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
@@ -109,21 +136,13 @@ export default async function PublicationDetailPage({
         </article>
 
         <aside className="flex flex-col gap-6">
-          <section className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white">
-            <h2 className="text-lg font-bold">Compartir</h2>
-            <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
-              Esta pagina esta pensada para circular fuera de FeriApp sin pedir
-              instalacion.
-            </p>
-            <div className="mt-4 grid gap-3">
-              <button className="h-11 rounded-md bg-[#f4c86b] px-4 text-sm font-bold text-[#1f211d]">
-                Compartir por WhatsApp
-              </button>
-              <button className="h-11 rounded-md border border-white/20 px-4 text-sm font-bold text-white">
-                Copiar enlace
-              </button>
-            </div>
-          </section>
+          <PublicationSharePanel
+            absoluteUrl={shareLinks.absoluteUrl}
+            facebookUrl={shareLinks.facebookUrl}
+            title={publication.title}
+            whatsappUrl={shareLinks.whatsappUrl}
+            xUrl={shareLinks.xUrl}
+          />
 
           <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
             <h2 className="text-lg font-bold">Privacidad geografica</h2>
