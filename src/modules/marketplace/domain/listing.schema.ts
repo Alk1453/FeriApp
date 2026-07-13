@@ -33,6 +33,7 @@ export const publicationSchema = listingSummarySchema.extend({
   description: z.string().min(20),
   createdAt: z.string().min(1),
   imageUrl: z.string().min(1),
+  privateLocationNote: z.string().min(1).optional(),
   shareUrl: z.string().min(1),
   contact: z.object({
     preferredChannel: z.enum(["whatsapp", "in-app", "phone", "feriapp-mediated"]),
@@ -62,6 +63,9 @@ export const publicationDraftSchema = z.object({
   priceLabel: z.string().min(1, "Indica precio, gratis o condicion."),
   locality: z.string().min(2, "Indica la localidad."),
   neighborhood: z.string().min(2, "Indica el barrio visible."),
+  privateLocationNote: z
+    .string()
+    .min(3, "Agrega una referencia privada de ubicacion."),
   imageCount: z.number().min(0).max(6),
   contact: z.object({
     preferredChannel: z.enum(["whatsapp", "in-app", "phone", "feriapp-mediated"]),

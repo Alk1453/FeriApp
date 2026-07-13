@@ -12,6 +12,7 @@ type LocalPublicationDraft = {
   priceLabel: string;
   locality: string;
   neighborhood: string;
+  privateLocationNote: string;
   contact: Publication["contact"];
 };
 
@@ -61,6 +62,7 @@ export function createLocalPublication(
     description: draft.description,
     createdAt: new Date().toISOString(),
     imageUrl: getImageUrl(draft.category),
+    privateLocationNote: draft.privateLocationNote,
     shareUrl: `/publicaciones/local/${id}`,
     contact: draft.contact,
     publicNotes: [

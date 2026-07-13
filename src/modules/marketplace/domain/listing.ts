@@ -36,6 +36,7 @@ export type Publication = ListingSummary & {
   description: string;
   createdAt: string;
   imageUrl: string;
+  privateLocationNote?: string;
   shareUrl: string;
   contact: PublicationContact;
   publicNotes: string[];

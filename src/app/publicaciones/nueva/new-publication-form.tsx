@@ -1,12 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   createLocalPublication,
   saveLocalPublication,
 } from "@/modules/marketplace/application/local-publications";
 import { publicationDraftSchema } from "@/modules/marketplace/domain/listing.schema";
+import {
+  readLocalAccount,
+  readLocalZone,
+  subscribeToLocalSession,
+} from "@/modules/platform/application/local-session";
 
 const publicationKinds = [
   {
@@ -90,6 +96,7 @@ type DraftState = {
   priceLabel: string;
   locality: string;
   neighborhood: string;
+  privateLocationNote: string;
   imageCount: number;
   contactMode: ContactMode;
 };
@@ -102,6 +109,7 @@ const initialDraft: DraftState = {
   priceLabel: "",
   locality: "",
   neighborhood: "",
+  privateLocationNote: "",
   imageCount: 0,
   contactMode: "whatsapp",
 };
@@ -116,6 +124,12 @@ function getKind(value: PublicationKind) {
 
 export function NewPublicationForm() {
   const router = useRouter();
+  const account = useSyncExternalStore(
+    subscribeToLocalSession,
+    readLocalAccount,
+    () => null,
+  );
+  const zone = useSyncExternalStore(subscribeToLocalSession, readLocalZone, () => null);
   const [draft, setDraft] = useState<DraftState>(initialDraft);
   const [saveStatus, setSaveStatus] = useState("");
   const selectedKind = getKind(draft.kind);
@@ -129,8 +143,9 @@ export function NewPublicationForm() {
         kind: draft.kind,
         category: draft.category,
         priceLabel: draft.priceLabel,
-        locality: draft.locality,
-        neighborhood: draft.neighborhood,
+        locality: zone?.locality ?? draft.locality,
+        neighborhood: zone?.neighborhood ?? draft.neighborhood,
+        privateLocationNote: draft.privateLocationNote,
         imageCount: draft.imageCount,
         contact: {
           preferredChannel: selectedContact.value,
@@ -138,7 +153,7 @@ export function NewPublicationForm() {
           monetizationSignal: selectedContact.signal,
         },
       }),
-    [draft, selectedContact],
+    [draft, selectedContact, zone?.locality, zone?.neighborhood],
   );
 
   const completion = validation.success
@@ -146,6 +161,16 @@ export function NewPublicationForm() {
     : `${Math.max(0, 7 - validation.error.issues.length)}/7 datos clave`;
 
   function saveDraft() {
+    if (!account) {
+      setSaveStatus("Crea una cuenta local antes de publicar.");
+      return;
+    }
+
+    if (!zone) {
+      setSaveStatus("Selecciona tu zona antes de publicar.");
+      return;
+    }
+
     if (!validation.success) {
       setSaveStatus(validation.error.issues[0]?.message ?? "Revisa los datos.");
       return;
@@ -158,8 +183,9 @@ export function NewPublicationForm() {
       kindLabel: selectedKind.label,
       category: validation.data.category,
       priceLabel: validation.data.priceLabel,
-      locality: validation.data.locality,
-      neighborhood: validation.data.neighborhood,
+      locality: zone.locality,
+      neighborhood: zone.neighborhood,
+      privateLocationNote: validation.data.privateLocationNote,
       contact: validation.data.contact,
     });
 
@@ -184,6 +210,43 @@ export function NewPublicationForm() {
         </div>
 
         <div className="mt-6 grid gap-5">
+          <div className="grid gap-3 rounded-lg bg-[#fdfbf6] p-4 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-bold uppercase text-[#69665f]">
+                Cuenta
+              </p>
+              {account ? (
+                <p className="mt-1 text-sm font-semibold">
+                  {account.displayName}
+                </p>
+              ) : (
+                <Link
+                  className="mt-1 inline-block text-sm font-bold text-[#a1452e]"
+                  href="/cuenta"
+                >
+                  Crear cuenta para publicar
+                </Link>
+              )}
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase text-[#69665f]">
+                Zona publica aproximada
+              </p>
+              {zone ? (
+                <p className="mt-1 text-sm font-semibold">
+                  {zone.neighborhood}, {zone.locality}
+                </p>
+              ) : (
+                <Link
+                  className="mt-1 inline-block text-sm font-bold text-[#a1452e]"
+                  href="/zona"
+                >
+                  Seleccionar zona
+                </Link>
+              )}
+            </div>
+          </div>
+
           <label className="grid gap-2 text-sm font-bold">
             Titulo
             <input
@@ -277,35 +340,34 @@ export function NewPublicationForm() {
             </label>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="grid gap-2 text-sm font-bold">
-              Localidad
-              <input
-                className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
-                onChange={(event) =>
-                  setDraft((current) => ({
-                    ...current,
-                    locality: event.target.value,
-                  }))
-                }
-                placeholder="San Martin"
-                value={draft.locality}
-              />
-            </label>
-            <label className="grid gap-2 text-sm font-bold">
-              Barrio visible
-              <input
-                className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
-                onChange={(event) =>
-                  setDraft((current) => ({
-                    ...current,
-                    neighborhood: event.target.value,
-                  }))
-                }
-                placeholder="Barrio Centro"
-                value={draft.neighborhood}
-              />
-            </label>
+          <label className="grid gap-2 text-sm font-bold">
+            Ubicacion privada
+            <input
+              className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+              onChange={(event) =>
+                setDraft((current) => ({
+                  ...current,
+                  privateLocationNote: event.target.value,
+                }))
+              }
+              placeholder="Ej: cerca de plaza principal, porton azul"
+              value={draft.privateLocationNote}
+            />
+            <span className="text-xs font-normal leading-5 text-[#69665f]">
+              No se muestra publicamente; sirve para coordinar luego con el
+              interesado.
+            </span>
+          </label>
+
+          <div className="rounded-md bg-[#e8f1df] p-4">
+            <p className="text-sm font-bold text-[#355d2d]">
+              Ubicacion publica generada
+            </p>
+            <p className="mt-1 text-sm leading-6 text-[#355d2d]">
+              {zone
+                ? `${zone.neighborhood}, ${zone.locality} - ${zone.approximateRadiusLabel}`
+                : "Selecciona tu zona para generar la ubicacion publica aproximada."}
+            </p>
           </div>
 
           <fieldset className="grid gap-3">
@@ -419,9 +481,9 @@ export function NewPublicationForm() {
               {draft.priceLabel || selectedKind.pricePlaceholder}
             </p>
             <p className="mt-1 text-sm text-[#69665f]">
-              {(draft.neighborhood || "Barrio visible") +
-                ", " +
-                (draft.locality || "Localidad")}
+              {zone
+                ? `${zone.neighborhood}, ${zone.locality}`
+                : "Barrio visible, Localidad"}
             </p>
           </div>
         </section>
