@@ -1,6 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  createLocalPublication,
+  saveLocalPublication,
+} from "@/modules/marketplace/application/local-publications";
 import { publicationDraftSchema } from "@/modules/marketplace/domain/listing.schema";
 
 const publicationKinds = [
@@ -110,7 +115,9 @@ function getKind(value: PublicationKind) {
 }
 
 export function NewPublicationForm() {
+  const router = useRouter();
   const [draft, setDraft] = useState<DraftState>(initialDraft);
+  const [saveStatus, setSaveStatus] = useState("");
   const selectedKind = getKind(draft.kind);
   const selectedContact = getContactMode(draft.contactMode);
 
@@ -137,6 +144,28 @@ export function NewPublicationForm() {
   const completion = validation.success
     ? "Lista para guardar"
     : `${Math.max(0, 7 - validation.error.issues.length)}/7 datos clave`;
+
+  function saveDraft() {
+    if (!validation.success) {
+      setSaveStatus(validation.error.issues[0]?.message ?? "Revisa los datos.");
+      return;
+    }
+
+    const publication = createLocalPublication({
+      title: validation.data.title,
+      description: validation.data.description,
+      kind: validation.data.kind,
+      kindLabel: selectedKind.label,
+      category: validation.data.category,
+      priceLabel: validation.data.priceLabel,
+      locality: validation.data.locality,
+      neighborhood: validation.data.neighborhood,
+      contact: validation.data.contact,
+    });
+
+    saveLocalPublication(publication);
+    router.push(`/publicaciones/local/${publication.id}`);
+  }
 
   return (
     <section className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[1fr_380px]">
@@ -353,11 +382,17 @@ export function NewPublicationForm() {
             </p>
             <button
               className="h-12 rounded-md bg-[#193f3a] px-5 text-sm font-bold text-white transition hover:bg-[#102d29]"
+              onClick={saveDraft}
               type="button"
             >
               Guardar borrador
             </button>
           </div>
+          {saveStatus ? (
+            <p className="rounded-md bg-[#f6e6d9] p-3 text-sm font-semibold text-[#8d3c28]">
+              {saveStatus}
+            </p>
+          ) : null}
         </div>
       </form>
 

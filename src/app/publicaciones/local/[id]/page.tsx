@@ -1,81 +1,42 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import {
-  getPublicationBySlug,
-  getPublications,
-} from "@/modules/marketplace/application/get-publications";
-import {
-  getPublicationAbsoluteUrl,
-  getPublicationShareLinks,
-} from "@/modules/marketplace/application/get-publication-share-links";
-import { PublicationSharePanel } from "../_components/publication-share-panel";
+import { useParams } from "next/navigation";
+import { PublicationSharePanel } from "../../_components/publication-share-panel";
+import { getPublicationShareLinks } from "@/modules/marketplace/application/get-publication-share-links";
+import { getLocalPublicationById } from "@/modules/marketplace/application/local-publications";
 
-type PublicationDetailPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export function generateStaticParams() {
-  return getPublications().map((publication) => ({
-    slug: publication.slug,
-  }));
+function subscribeToStorage(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  return () => window.removeEventListener("storage", onStoreChange);
 }
 
-export async function generateMetadata({
-  params,
-}: PublicationDetailPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const publication = getPublicationBySlug(slug);
+export default function LocalPublicationDetailPage() {
+  const params = useParams<{ id: string }>();
+  const publication = useSyncExternalStore(
+    subscribeToStorage,
+    () => getLocalPublicationById(params.id) ?? null,
+    () => null,
+  );
 
   if (!publication) {
-    return {
-      title: "Publicacion no encontrada | FeriApp",
-    };
-  }
-
-  const absoluteUrl = getPublicationAbsoluteUrl(publication);
-
-  return {
-    title: `${publication.title} | FeriApp`,
-    description: publication.description,
-    alternates: {
-      canonical: absoluteUrl,
-    },
-    openGraph: {
-      title: publication.title,
-      description: publication.description,
-      type: "article",
-      url: absoluteUrl,
-      siteName: "FeriApp",
-      images: [
-        {
-          url: publication.imageUrl,
-          width: 640,
-          height: 420,
-          alt: publication.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: publication.title,
-      description: publication.description,
-      images: [publication.imageUrl],
-    },
-  };
-}
-
-export default async function PublicationDetailPage({
-  params,
-}: PublicationDetailPageProps) {
-  const { slug } = await params;
-  const publication = getPublicationBySlug(slug);
-
-  if (!publication) {
-    notFound();
+    return (
+      <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d]">
+        <section className="mx-auto max-w-3xl rounded-lg border border-[#d9d0c0] bg-white p-5">
+          <Link className="text-sm font-bold text-[#a1452e]" href="/publicaciones">
+            Publicaciones
+          </Link>
+          <h1 className="mt-3 text-2xl font-bold">Borrador no encontrado</h1>
+          <p className="mt-2 text-sm leading-6 text-[#69665f]">
+            Esta publicacion local vive en el navegador donde fue creada. Cuando
+            conectemos Supabase, estas URLs seran publicas para cualquier
+            persona.
+          </p>
+        </section>
+      </main>
+    );
   }
 
   const shareLinks = getPublicationShareLinks(publication);
@@ -103,7 +64,7 @@ export default async function PublicationDetailPage({
                 {publication.location.distanceLabel}
               </span>
               <span className="rounded-md bg-[#f5f1e8] px-2.5 py-1 text-xs font-bold text-[#69665f]">
-                {publication.trustLabel}
+                Borrador local
               </span>
             </div>
 
@@ -145,17 +106,13 @@ export default async function PublicationDetailPage({
           />
 
           <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
-            <h2 className="text-lg font-bold">Privacidad geografica</h2>
-            <div className="mt-4 space-y-3">
-              {publication.publicNotes.map((note) => (
-                <p
-                  className="rounded-md border border-[#e3dacb] bg-[#fdfbf6] p-3 text-sm leading-6 text-[#57534b]"
-                  key={note}
-                >
-                  {note}
-                </p>
-              ))}
-            </div>
+            <h2 className="text-lg font-bold">Estado del flujo</h2>
+            <p className="mt-2 text-sm leading-6 text-[#69665f]">
+              Este borrador ya completa el ciclo crear, validar, guardar, ver y
+              compartir en el mismo navegador. El siguiente paso natural es
+              persistirlo en Supabase para hacerlo publico en cualquier
+              dispositivo.
+            </p>
           </section>
         </aside>
       </section>

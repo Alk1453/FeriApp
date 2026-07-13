@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPublications } from "@/modules/marketplace/application/get-publications";
 import { getPublicationShareLinks } from "@/modules/marketplace/application/get-publication-share-links";
+import { LocalPublicationsSection } from "./local-publications-section";
 
 export const metadata = {
   title: "Publicaciones | FeriApp",
@@ -33,6 +34,8 @@ export default function PublicationsPage() {
             Nueva publicacion
           </Link>
         </header>
+
+        <LocalPublicationsSection />
 
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {publications.map((publication) => {
