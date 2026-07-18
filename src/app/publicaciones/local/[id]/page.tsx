@@ -4,13 +4,23 @@ import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { InterestAndDeliveryPanel } from "../../_components/interest-and-delivery-panel";
 import { PublicationSharePanel } from "../../_components/publication-share-panel";
 import { getPublicationShareLinks } from "@/modules/marketplace/application/get-publication-share-links";
-import { getLocalPublicationById } from "@/modules/marketplace/application/local-publications";
+import {
+  getLocalPublicationById,
+  localPublicationsEventName,
+} from "@/modules/marketplace/application/local-publications";
+import { OwnerPublicationActions } from "./owner-publication-actions";
 
 function subscribeToStorage(onStoreChange: () => void) {
   window.addEventListener("storage", onStoreChange);
-  return () => window.removeEventListener("storage", onStoreChange);
+  window.addEventListener(localPublicationsEventName, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(localPublicationsEventName, onStoreChange);
+  };
 }
 
 export default function LocalPublicationDetailPage() {
@@ -97,6 +107,16 @@ export default function LocalPublicationDetailPage() {
         </article>
 
         <aside className="flex flex-col gap-6">
+          <OwnerPublicationActions
+            publicationId={publication.id}
+            status={publication.status}
+          />
+
+          <InterestAndDeliveryPanel
+            publicationTitle={publication.title}
+            publicZone={`${publication.location.neighborhood}, ${publication.location.locality}`}
+          />
+
           <PublicationSharePanel
             absoluteUrl={shareLinks.absoluteUrl}
             facebookUrl={shareLinks.facebookUrl}

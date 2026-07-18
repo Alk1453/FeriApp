@@ -2,11 +2,19 @@
 
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
-import { readLocalPublications } from "@/modules/marketplace/application/local-publications";
+import {
+  localPublicationsEventName,
+  readLocalPublications,
+} from "@/modules/marketplace/application/local-publications";
 
 function subscribeToStorage(onStoreChange: () => void) {
   window.addEventListener("storage", onStoreChange);
-  return () => window.removeEventListener("storage", onStoreChange);
+  window.addEventListener(localPublicationsEventName, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(localPublicationsEventName, onStoreChange);
+  };
 }
 
 export function LocalPublicationsSection() {

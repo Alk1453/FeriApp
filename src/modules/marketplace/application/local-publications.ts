@@ -2,6 +2,7 @@ import type { Publication } from "../domain/listing";
 import { publicationSchema } from "../domain/listing.schema";
 
 export const localPublicationsStorageKey = "feriapp.local-publications.v1";
+export const localPublicationsEventName = "feriapp-local-publications";
 
 type LocalPublicationDraft = {
   title: string;
@@ -97,8 +98,27 @@ export function saveLocalPublication(publication: Publication): void {
     localPublicationsStorageKey,
     JSON.stringify(nextPublications),
   );
+  window.dispatchEvent(new Event(localPublicationsEventName));
 }
 
 export function getLocalPublicationById(id: string): Publication | undefined {
   return readLocalPublications().find((publication) => publication.id === id);
+}
+
+export function updateLocalPublicationStatus(
+  id: string,
+  status: Publication["status"],
+): Publication | undefined {
+  const publications = readLocalPublications();
+  const nextPublications = publications.map((publication) =>
+    publication.id === id ? { ...publication, status } : publication,
+  );
+
+  window.localStorage.setItem(
+    localPublicationsStorageKey,
+    JSON.stringify(nextPublications),
+  );
+  window.dispatchEvent(new Event(localPublicationsEventName));
+
+  return nextPublications.find((publication) => publication.id === id);
 }

@@ -24,7 +24,7 @@ export const listingSummarySchema = z.object({
   ]),
   location: publicLocationSchema,
   trustLabel: z.string().min(1),
-  status: z.enum(["draft", "active", "reserved", "closed"]),
+  status: z.enum(["draft", "active", "paused", "reserved", "closed"]),
 });
 
 export const listingSummaryListSchema = z.array(listingSummarySchema);

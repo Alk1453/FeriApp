@@ -12,6 +12,12 @@ documents.
 - External providers for maps, payments, social sharing, storage, and
   notifications must be wrapped by internal services before product code uses
   them.
+- Keep logistics as an independent module. Marketplace may request or suggest
+  delivery, but logistics owns providers, transport modes, delivery proposals,
+  delivery states, and logistics reputation.
+- Keep sharing as a cross-cutting capability. Publications, profiles, virtual
+  stalls, services, campaigns, and logistics requests may become shareable
+  resources.
 
 ## Territory and privacy
 
@@ -21,6 +27,8 @@ documents.
 - Exact user location is private by default.
 - Public location should be approximate: neighborhood, zone, radius, or
   estimated distance.
+- Never show an exact address by default in public views, social cards, links,
+  screenshots, or generated share assets.
 
 ## Security
 
@@ -29,6 +37,10 @@ documents.
   state.
 - Sensitive database tables must use Row Level Security, indexes, auditing, and
   integrity constraints.
+- Do not claim absolute legal guarantees about professionals, companies,
+  transport providers, or regulated services. Use precise validation labels such
+  as identity confirmed, documentation presented, license reviewed, or company
+  data reviewed.
 
 ## Code
 
@@ -38,6 +50,13 @@ documents.
 - Use Zod for runtime validation at boundaries.
 - Add comments only when they provide context.
 - Avoid unnecessary dependencies.
+- Do not create opaque trust percentages. Visible trust indicators must be easy
+  to explain.
+- Do not require a virtual stall for simple low-risk publications.
+- Do not require advanced documentation validation for basic low-risk
+  publications.
+- Do not implement payments, commissions, or route optimization before the
+  corresponding vertical flow needs them.
 
 ## Product fit check
 

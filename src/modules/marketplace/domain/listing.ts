@@ -2,7 +2,12 @@ import type { PublicLocation } from "@/shared/domain/territory";
 
 export type ListingKind = "sale" | "barter" | "donation" | "gift" | "service";
 
-export type PublicationStatus = "draft" | "active" | "reserved" | "closed";
+export type PublicationStatus =
+  | "draft"
+  | "active"
+  | "paused"
+  | "reserved"
+  | "closed";
 
 export type PublicationCategory =
   | "home"

@@ -10,6 +10,7 @@ import {
   getPublicationAbsoluteUrl,
   getPublicationShareLinks,
 } from "@/modules/marketplace/application/get-publication-share-links";
+import { InterestAndDeliveryPanel } from "../_components/interest-and-delivery-panel";
 import { PublicationSharePanel } from "../_components/publication-share-panel";
 
 type PublicationDetailPageProps = {
@@ -136,6 +137,11 @@ export default async function PublicationDetailPage({
         </article>
 
         <aside className="flex flex-col gap-6">
+          <InterestAndDeliveryPanel
+            publicationTitle={publication.title}
+            publicZone={`${publication.location.neighborhood}, ${publication.location.locality}`}
+          />
+
           <PublicationSharePanel
             absoluteUrl={shareLinks.absoluteUrl}
             facebookUrl={shareLinks.facebookUrl}
