@@ -63,6 +63,8 @@ export default function Home() {
         </aside>
 
         <div className="flex flex-col gap-6">
+          <LocalRadar listings={listings} />
+
           <header className="ui-surface p-4 sm:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
               <div>
@@ -97,8 +99,6 @@ export default function Home() {
               </button>
             </div>
           </header>
-
-          <LocalRadar listings={listings} />
 
           <section className="grid gap-6 xl:grid-cols-[1fr_340px]">
             <div className="ui-surface">
@@ -155,7 +155,7 @@ export default function Home() {
 
             <aside className="flex flex-col gap-6">
               <section className="ui-surface-soft p-5">
-                <h3 className="text-lg font-bold">Radar del barrio</h3>
+                <h3 className="text-lg font-bold">Alertas del barrio</h3>
                 <div className="mt-4 space-y-3">
                   {radar.map((alert) => (
                     <label
