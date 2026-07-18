@@ -23,12 +23,9 @@ export default function Home() {
             <div>
               <img
                 alt="FeriApp"
-                className="h-auto w-48"
-                src="/brand/logo-dark.svg"
+                className="h-auto w-44"
+                src="/brand/logo-sidebar-dark.svg"
               />
-              <h1 className="mt-4 max-w-52 text-2xl font-extrabold leading-tight text-[#f2f4f1]">
-                La feria digital de tu barrio
-              </h1>
             </div>
             <span className="rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold">
               PWA
