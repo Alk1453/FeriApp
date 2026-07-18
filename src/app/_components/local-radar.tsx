@@ -51,7 +51,7 @@ export function LocalRadar({ listings }: LocalRadarProps) {
           </div>
 
           <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight sm:text-5xl">
-            Oportunidades cerca, sin exponer ubicaciones privadas.
+            Lo que queres o necesitas, oportunidades cerca.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
             Descubre ventas, trueques, donaciones y servicios alrededor tuyo. La
