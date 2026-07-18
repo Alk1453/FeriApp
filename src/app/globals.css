@@ -1,25 +1,193 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f5ef;
-  --foreground: #20201d;
+  --background: #f8f9f6;
+  --foreground: #20231f;
+  --surface: #ffffff;
+  --surface-soft: #f1f4ee;
+  --muted: #667064;
+  --border-soft: #dde5d8;
+  --primary: #2f7d3a;
+  --primary-soft: #e8f3ea;
+  --primary-strong: #1f5e2c;
+  --accent: #f28c28;
+  --accent-soft: #fff1e2;
+  --support: #7556a8;
+  --support-soft: #f0ebfa;
+  --danger: #c63d32;
+  --danger-soft: #fdecea;
+  --radius-ui: 8px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-muted: var(--muted);
+  --color-border-soft: var(--border-soft);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-strong: var(--primary-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-support: var(--support);
+  --color-support-soft: var(--support-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: var(--font-nunito), Nunito, Arial, Helvetica, sans-serif;
   --font-mono: "Courier New", Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), Nunito, Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
 }
 
 button,
 input,
 label {
   cursor: pointer;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+}
+
+@layer components {
+  .ui-page {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  .ui-surface {
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-ui);
+    background: var(--surface);
+  }
+
+  .ui-surface-soft {
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-ui);
+    background: var(--surface-soft);
+  }
+
+  .ui-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-ui);
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1.2;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .ui-button:active {
+    transform: translateY(1px);
+  }
+
+  .ui-button-primary {
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: white;
+  }
+
+  .ui-button-primary:hover {
+    background: var(--primary-strong);
+    border-color: var(--primary-strong);
+  }
+
+  .ui-button-secondary {
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+    color: var(--foreground);
+  }
+
+  .ui-button-secondary:hover {
+    background: var(--surface-soft);
+  }
+
+  .ui-chip {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    border-radius: var(--radius-ui);
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .ui-chip-success {
+    background: var(--primary-soft);
+    color: var(--primary-strong);
+  }
+
+  .ui-chip-warning {
+    background: var(--accent-soft);
+    color: #a65f12;
+  }
+
+  .ui-chip-info {
+    background: var(--support-soft);
+    color: var(--support);
+  }
+
+  .ui-chip-neutral {
+    background: #eef1ec;
+    color: #5f665e;
+  }
+
+  .ui-chip-error {
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+
+  .ui-field {
+    min-height: 48px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-ui);
+    background: var(--surface);
+    padding: 0.75rem;
+    outline: none;
+  }
+
+  .ui-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+  }
 }
