@@ -5,6 +5,7 @@ import {
   getPrimaryModules,
 } from "@/modules/platform/application/get-platform-modules";
 import { getRadarAlerts } from "@/modules/radar/application/get-radar-alerts";
+import { BottomNavigation } from "./_components/bottom-navigation";
 
 export default function Home() {
   const listings = getNearbyListings();
@@ -13,7 +14,7 @@ export default function Home() {
   const roadmap = getExpansionModules();
 
   return (
-    <main className="min-h-screen bg-[#f5f1e8] text-[#1f211d]">
+    <main className="ui-page pb-24 md:pb-0">
       <section className="mx-auto grid min-h-screen w-full max-w-7xl gap-6 px-4 py-4 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
         <aside className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white lg:min-h-[calc(100vh-2rem)]">
           <div className="flex items-center justify-between gap-3">
@@ -60,7 +61,7 @@ export default function Home() {
         </aside>
 
         <div className="flex flex-col gap-6">
-          <header className="rounded-lg border border-[#d9d0c0] bg-white p-4 sm:p-5">
+          <header className="ui-surface p-4 sm:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase text-[#a1452e]">
@@ -71,7 +72,7 @@ export default function Home() {
                 </h2>
               </div>
               <Link
-                className="flex h-11 w-full items-center justify-center rounded-md bg-[#a1452e] px-4 text-sm font-bold text-white transition hover:bg-[#843625] sm:w-fit"
+                className="ui-button ui-button-primary w-full sm:w-fit"
                 href="/publicaciones/nueva"
               >
                 Publicar ahora
@@ -80,31 +81,31 @@ export default function Home() {
 
             <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_140px]">
               <input
-                className="h-12 rounded-md border border-[#d4c8b7] px-4 text-sm outline-none focus:border-[#193f3a]"
+                className="ui-field px-4 text-sm"
                 placeholder="Buscar productos, servicios o donaciones"
                 type="search"
               />
-              <select className="h-12 rounded-md border border-[#d4c8b7] bg-white px-3 text-sm font-medium outline-none focus:border-[#193f3a]">
+              <select className="ui-field px-3 text-sm font-medium">
                 <option>Hasta 2 km</option>
                 <option>Hasta 5 km</option>
                 <option>Toda la localidad</option>
               </select>
-              <button className="h-12 rounded-md bg-[#193f3a] px-4 text-sm font-bold text-white transition hover:bg-[#102d29]">
+              <button className="ui-button ui-button-primary">
                 Buscar
               </button>
             </div>
           </header>
 
           <section className="grid gap-6 xl:grid-cols-[1fr_340px]">
-            <div className="rounded-lg border border-[#d9d0c0] bg-white">
-              <div className="flex flex-col gap-2 border-b border-[#e7dfd1] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="ui-surface">
+              <div className="flex flex-col gap-2 border-b border-border-soft px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h3 className="text-lg font-bold">Cerca tuyo</h3>
                   <p className="text-sm text-[#69665f]">
                     Publicaciones priorizadas por distancia y confianza.
                   </p>
                 </div>
-                <span className="w-fit rounded-md bg-[#e8f1df] px-3 py-1 text-sm font-semibold text-[#355d2d]">
+                <span className="ui-chip ui-chip-success w-fit text-sm">
                   24 nuevas
                 </span>
               </div>
@@ -117,7 +118,7 @@ export default function Home() {
                   >
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-md bg-[#f6e6d9] px-2.5 py-1 text-xs font-bold text-[#8d3c28]">
+                        <span className="ui-chip ui-chip-warning">
                           {item.kindLabel}
                         </span>
                         <span className="text-sm font-medium text-[#69665f]">
@@ -133,7 +134,7 @@ export default function Home() {
                     <div className="flex items-center justify-between gap-4 md:flex-col md:items-end">
                       <strong className="text-lg">{item.priceLabel}</strong>
                       <Link
-                        className="rounded-md border border-[#cfc3b0] px-3 py-2 text-sm font-bold hover:bg-[#f5f1e8]"
+                        className="ui-button ui-button-secondary min-h-10 px-3 py-2"
                         href={`/publicaciones/${item.slug}`}
                       >
                         Ver
@@ -145,12 +146,12 @@ export default function Home() {
             </div>
 
             <aside className="flex flex-col gap-6">
-              <section className="rounded-lg border border-[#d9d0c0] bg-[#fdfbf6] p-5">
+              <section className="ui-surface-soft p-5">
                 <h3 className="text-lg font-bold">Radar del barrio</h3>
                 <div className="mt-4 space-y-3">
                   {radar.map((alert) => (
                     <label
-                      className="flex items-start gap-3 rounded-md border border-[#e3dacb] bg-white p-3 text-sm leading-6"
+                      className="flex items-start gap-3 rounded-md border border-border-soft bg-white p-3 text-sm leading-6"
                       key={alert}
                     >
                       <input
@@ -163,7 +164,7 @@ export default function Home() {
                 </div>
               </section>
 
-              <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+              <section className="ui-surface p-5">
                 <h3 className="text-lg font-bold">Modo vecino</h3>
                 <p className="mt-2 text-sm leading-6 text-[#69665f]">
                   Para descubrir, guardar, seguir categorias y recomendar sin
@@ -206,6 +207,7 @@ export default function Home() {
           </section>
         </div>
       </section>
+      <BottomNavigation />
     </main>
   );
 }

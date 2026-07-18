@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPublications } from "@/modules/marketplace/application/get-publications";
 import { getPublicationShareLinks } from "@/modules/marketplace/application/get-publication-share-links";
+import { BottomNavigation } from "../_components/bottom-navigation";
 import { LocalPublicationsSection } from "./local-publications-section";
 
 export const metadata = {
@@ -14,9 +15,9 @@ export default function PublicationsPage() {
   const publications = getPublications();
 
   return (
-    <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
+    <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-6">
-        <header className="flex flex-col gap-4 rounded-lg border border-[#d9d0c0] bg-white p-5 md:flex-row md:items-center md:justify-between">
+        <header className="ui-surface flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
           <div>
             <Link className="text-sm font-bold text-[#a1452e]" href="/">
               FeriApp
@@ -28,7 +29,7 @@ export default function PublicationsPage() {
             </p>
           </div>
           <Link
-            className="flex h-11 items-center justify-center rounded-md bg-[#193f3a] px-4 text-sm font-bold text-white transition hover:bg-[#102d29]"
+            className="ui-button ui-button-primary"
             href="/publicaciones/nueva"
           >
             Nueva publicacion
@@ -43,7 +44,7 @@ export default function PublicationsPage() {
 
             return (
               <article
-                className="overflow-hidden rounded-lg border border-[#d9d0c0] bg-white"
+                className="ui-surface overflow-hidden"
                 key={publication.id}
               >
                 <Image
@@ -55,10 +56,10 @@ export default function PublicationsPage() {
                 />
                 <div className="p-5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-md bg-[#f6e6d9] px-2.5 py-1 text-xs font-bold text-[#8d3c28]">
+                    <span className="ui-chip ui-chip-warning">
                       {publication.kindLabel}
                     </span>
-                    <span className="rounded-md bg-[#e8f1df] px-2.5 py-1 text-xs font-bold text-[#355d2d]">
+                    <span className="ui-chip ui-chip-success">
                       {publication.location.distanceLabel}
                     </span>
                   </div>
@@ -70,7 +71,7 @@ export default function PublicationsPage() {
                     <strong>{publication.priceLabel}</strong>
                     <div className="flex gap-2">
                       <a
-                        className="rounded-md border border-[#cfc3b0] px-3 py-2 text-sm font-bold hover:bg-[#f5f1e8]"
+                        className="ui-button ui-button-secondary min-h-10 px-3 py-2"
                         href={shareLinks.whatsappUrl}
                         rel="noreferrer"
                         target="_blank"
@@ -78,7 +79,7 @@ export default function PublicationsPage() {
                         WhatsApp
                       </a>
                       <Link
-                        className="rounded-md border border-[#cfc3b0] px-3 py-2 text-sm font-bold hover:bg-[#f5f1e8]"
+                        className="ui-button ui-button-secondary min-h-10 px-3 py-2"
                         href={`/publicaciones/${publication.slug}`}
                       >
                         Ver
@@ -91,6 +92,7 @@ export default function PublicationsPage() {
           })}
         </section>
       </section>
+      <BottomNavigation />
     </main>
   );
 }

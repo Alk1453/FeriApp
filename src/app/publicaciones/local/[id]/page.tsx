@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { BottomNavigation } from "@/app/_components/bottom-navigation";
 import { InterestAndDeliveryPanel } from "../../_components/interest-and-delivery-panel";
 import { PublicationSharePanel } from "../../_components/publication-share-panel";
 import { getPublicationShareLinks } from "@/modules/marketplace/application/get-publication-share-links";
@@ -33,8 +34,8 @@ export default function LocalPublicationDetailPage() {
 
   if (!publication) {
     return (
-      <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d]">
-        <section className="mx-auto max-w-3xl rounded-lg border border-[#d9d0c0] bg-white p-5">
+      <main className="ui-page px-4 py-5 pb-24">
+        <section className="ui-surface mx-auto max-w-3xl p-5">
           <Link className="text-sm font-bold text-[#a1452e]" href="/publicaciones">
             Publicaciones
           </Link>
@@ -45,6 +46,7 @@ export default function LocalPublicationDetailPage() {
             persona.
           </p>
         </section>
+        <BottomNavigation />
       </main>
     );
   }
@@ -52,9 +54,9 @@ export default function LocalPublicationDetailPage() {
   const shareLinks = getPublicationShareLinks(publication);
 
   return (
-    <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
+    <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
       <section className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[1fr_360px]">
-        <article className="overflow-hidden rounded-lg border border-[#d9d0c0] bg-white">
+        <article className="ui-surface overflow-hidden">
           <Image
             alt=""
             className="aspect-[16/9] w-full object-cover"
@@ -67,13 +69,13 @@ export default function LocalPublicationDetailPage() {
               Publicaciones
             </Link>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-[#f6e6d9] px-2.5 py-1 text-xs font-bold text-[#8d3c28]">
+              <span className="ui-chip ui-chip-warning">
                 {publication.kindLabel}
               </span>
-              <span className="rounded-md bg-[#e8f1df] px-2.5 py-1 text-xs font-bold text-[#355d2d]">
+              <span className="ui-chip ui-chip-success">
                 {publication.location.distanceLabel}
               </span>
-              <span className="rounded-md bg-[#f5f1e8] px-2.5 py-1 text-xs font-bold text-[#69665f]">
+              <span className="ui-chip ui-chip-neutral">
                 Borrador local
               </span>
             </div>
@@ -86,7 +88,7 @@ export default function LocalPublicationDetailPage() {
               {publication.description}
             </p>
 
-            <section className="mt-6 grid gap-3 rounded-lg bg-[#fdfbf6] p-4 sm:grid-cols-2">
+            <section className="ui-surface-soft mt-6 grid gap-3 p-4 sm:grid-cols-2">
               <div>
                 <p className="text-xs font-bold uppercase text-[#69665f]">
                   Zona publica
@@ -125,7 +127,7 @@ export default function LocalPublicationDetailPage() {
             xUrl={shareLinks.xUrl}
           />
 
-          <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+          <section className="ui-surface p-5">
             <h2 className="text-lg font-bold">Estado del flujo</h2>
             <p className="mt-2 text-sm leading-6 text-[#69665f]">
               Este borrador ya completa el ciclo crear, validar, guardar, ver y
@@ -136,6 +138,7 @@ export default function LocalPublicationDetailPage() {
           </section>
         </aside>
       </section>
+      <BottomNavigation />
     </main>
   );
 }

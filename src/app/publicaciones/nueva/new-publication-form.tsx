@@ -195,7 +195,7 @@ export function NewPublicationForm() {
 
   return (
     <section className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[1fr_380px]">
-      <form className="rounded-lg border border-[#d9d0c0] bg-white p-4 sm:p-5">
+      <form className="ui-surface p-4 sm:p-5">
         <div className="flex flex-col gap-3 border-b border-[#e7dfd1] pb-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold">Nueva publicacion</h1>
@@ -204,13 +204,13 @@ export function NewPublicationForm() {
               ubicacion exacta.
             </p>
           </div>
-          <span className="w-fit rounded-md bg-[#e8f1df] px-3 py-1 text-sm font-bold text-[#355d2d]">
+          <span className="ui-chip ui-chip-success w-fit">
             {completion}
           </span>
         </div>
 
         <div className="mt-6 grid gap-5">
-          <div className="grid gap-3 rounded-lg bg-[#fdfbf6] p-4 md:grid-cols-2">
+          <div className="ui-surface-soft grid gap-3 p-4 md:grid-cols-2">
             <div>
               <p className="text-xs font-bold uppercase text-[#69665f]">
                 Cuenta
@@ -250,7 +250,7 @@ export function NewPublicationForm() {
           <label className="grid gap-2 text-sm font-bold">
             Titulo
             <input
-              className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+              className="ui-field font-normal"
               onChange={(event) =>
                 setDraft((current) => ({ ...current, title: event.target.value }))
               }
@@ -262,7 +262,7 @@ export function NewPublicationForm() {
           <label className="grid gap-2 text-sm font-bold">
             Descripcion
             <textarea
-              className="min-h-32 rounded-md border border-[#d4c8b7] px-3 py-3 font-normal leading-6 outline-none focus:border-[#193f3a]"
+              className="ui-field min-h-32 font-normal leading-6"
               onChange={(event) =>
                 setDraft((current) => ({
                   ...current,
@@ -281,8 +281,8 @@ export function NewPublicationForm() {
                 <button
                   className={`min-h-24 rounded-md border p-3 text-left text-sm transition ${
                     draft.kind === kind.value
-                      ? "border-[#193f3a] bg-[#e8f1df]"
-                      : "border-[#d4c8b7] bg-white hover:bg-[#f5f1e8]"
+                      ? "border-primary bg-primary-soft text-primary-strong"
+                      : "border-border-soft bg-white hover:bg-surface-soft"
                   }`}
                   key={kind.value}
                   onClick={() =>
@@ -307,7 +307,7 @@ export function NewPublicationForm() {
             <label className="grid gap-2 text-sm font-bold">
               Categoria
               <select
-                className="h-12 rounded-md border border-[#d4c8b7] bg-white px-3 font-normal outline-none focus:border-[#193f3a]"
+                className="ui-field font-normal"
                 onChange={(event) =>
                   setDraft((current) => ({
                     ...current,
@@ -327,7 +327,7 @@ export function NewPublicationForm() {
             <label className="grid gap-2 text-sm font-bold">
               Precio o condicion
               <input
-                className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+                className="ui-field font-normal"
                 onChange={(event) =>
                   setDraft((current) => ({
                     ...current,
@@ -343,7 +343,7 @@ export function NewPublicationForm() {
           <label className="grid gap-2 text-sm font-bold">
             Ubicacion privada
             <input
-              className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+              className="ui-field font-normal"
               onChange={(event) =>
                 setDraft((current) => ({
                   ...current,
@@ -359,11 +359,11 @@ export function NewPublicationForm() {
             </span>
           </label>
 
-          <div className="rounded-md bg-[#e8f1df] p-4">
-            <p className="text-sm font-bold text-[#355d2d]">
+          <div className="rounded-md bg-primary-soft p-4">
+            <p className="text-sm font-bold text-primary-strong">
               Ubicacion publica generada
             </p>
-            <p className="mt-1 text-sm leading-6 text-[#355d2d]">
+            <p className="mt-1 text-sm leading-6 text-primary-strong">
               {zone
                 ? `${zone.neighborhood}, ${zone.locality} - ${zone.approximateRadiusLabel}`
                 : "Selecciona tu zona para generar la ubicacion publica aproximada."}
@@ -372,14 +372,14 @@ export function NewPublicationForm() {
 
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold">Imagenes</legend>
-            <div className="rounded-md border border-dashed border-[#c7bda9] bg-[#fdfbf6] p-4">
+            <div className="rounded-md border border-dashed border-border-soft bg-surface-soft p-4">
               <p className="text-sm font-semibold">Agregar fotos del producto</p>
               <p className="mt-1 text-sm leading-6 text-[#69665f]">
                 En esta version demo contamos fotos; luego se conectara Storage.
               </p>
               <div className="mt-3 flex items-center gap-3">
                 <button
-                  className="size-10 rounded-md border border-[#cfc3b0] text-lg font-bold"
+                  className="size-10 rounded-md border border-border-soft text-lg font-bold"
                   onClick={() =>
                     setDraft((current) => ({
                       ...current,
@@ -394,7 +394,7 @@ export function NewPublicationForm() {
                   {draft.imageCount} / 6 fotos
                 </span>
                 <button
-                  className="size-10 rounded-md border border-[#cfc3b0] text-lg font-bold"
+                  className="size-10 rounded-md border border-border-soft text-lg font-bold"
                   onClick={() =>
                     setDraft((current) => ({
                       ...current,
@@ -416,8 +416,8 @@ export function NewPublicationForm() {
                 <button
                   className={`rounded-md border p-3 text-left text-sm transition ${
                     draft.contactMode === mode.value
-                      ? "border-[#193f3a] bg-[#e8f1df]"
-                      : "border-[#d4c8b7] bg-white hover:bg-[#f5f1e8]"
+                      ? "border-primary bg-primary-soft text-primary-strong"
+                      : "border-border-soft bg-white hover:bg-surface-soft"
                   }`}
                   key={mode.value}
                   onClick={() =>
@@ -443,7 +443,7 @@ export function NewPublicationForm() {
               ubicacion exacta privada por defecto.
             </p>
             <button
-              className="h-12 rounded-md bg-[#193f3a] px-5 text-sm font-bold text-white transition hover:bg-[#102d29]"
+              className="ui-button ui-button-primary"
               onClick={saveDraft}
               type="button"
             >
@@ -451,7 +451,7 @@ export function NewPublicationForm() {
             </button>
           </div>
           {saveStatus ? (
-            <p className="rounded-md bg-[#f6e6d9] p-3 text-sm font-semibold text-[#8d3c28]">
+            <p className="rounded-md bg-accent-soft p-3 text-sm font-semibold text-[#a65f12]">
               {saveStatus}
             </p>
           ) : null}
@@ -459,14 +459,14 @@ export function NewPublicationForm() {
       </form>
 
       <aside className="flex flex-col gap-6">
-        <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+        <section className="ui-surface p-5">
           <h2 className="text-lg font-bold">Vista previa</h2>
-          <div className="mt-4 rounded-lg border border-[#e3dacb] bg-[#fdfbf6] p-4">
+          <div className="ui-surface-soft mt-4 p-4">
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-md bg-[#f6e6d9] px-2.5 py-1 text-xs font-bold text-[#8d3c28]">
+              <span className="ui-chip ui-chip-warning">
                 {selectedKind.label}
               </span>
-              <span className="rounded-md bg-[#e8f1df] px-2.5 py-1 text-xs font-bold text-[#355d2d]">
+              <span className="ui-chip ui-chip-success">
                 Zona aproximada
               </span>
             </div>
@@ -488,7 +488,7 @@ export function NewPublicationForm() {
           </div>
         </section>
 
-        <section className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white">
+        <section className="rounded-lg border border-primary bg-primary-strong p-5 text-white">
           <h2 className="text-lg font-bold">Contacto y monetizacion futura</h2>
           <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
             El contacto elegido queda marcado como senal de negocio, sin cobrar

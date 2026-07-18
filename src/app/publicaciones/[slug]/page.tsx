@@ -10,6 +10,7 @@ import {
   getPublicationAbsoluteUrl,
   getPublicationShareLinks,
 } from "@/modules/marketplace/application/get-publication-share-links";
+import { BottomNavigation } from "@/app/_components/bottom-navigation";
 import { InterestAndDeliveryPanel } from "../_components/interest-and-delivery-panel";
 import { PublicationSharePanel } from "../_components/publication-share-panel";
 
@@ -82,9 +83,9 @@ export default async function PublicationDetailPage({
   const shareLinks = getPublicationShareLinks(publication);
 
   return (
-    <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
+    <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
       <section className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[1fr_360px]">
-        <article className="overflow-hidden rounded-lg border border-[#d9d0c0] bg-white">
+        <article className="ui-surface overflow-hidden">
           <Image
             alt=""
             className="aspect-[16/9] w-full object-cover"
@@ -97,13 +98,13 @@ export default async function PublicationDetailPage({
               Publicaciones
             </Link>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-[#f6e6d9] px-2.5 py-1 text-xs font-bold text-[#8d3c28]">
+              <span className="ui-chip ui-chip-warning">
                 {publication.kindLabel}
               </span>
-              <span className="rounded-md bg-[#e8f1df] px-2.5 py-1 text-xs font-bold text-[#355d2d]">
+              <span className="ui-chip ui-chip-success">
                 {publication.location.distanceLabel}
               </span>
-              <span className="rounded-md bg-[#f5f1e8] px-2.5 py-1 text-xs font-bold text-[#69665f]">
+              <span className="ui-chip ui-chip-neutral">
                 {publication.trustLabel}
               </span>
             </div>
@@ -116,7 +117,7 @@ export default async function PublicationDetailPage({
               {publication.description}
             </p>
 
-            <section className="mt-6 grid gap-3 rounded-lg bg-[#fdfbf6] p-4 sm:grid-cols-2">
+            <section className="ui-surface-soft mt-6 grid gap-3 p-4 sm:grid-cols-2">
               <div>
                 <p className="text-xs font-bold uppercase text-[#69665f]">
                   Zona publica
@@ -150,12 +151,12 @@ export default async function PublicationDetailPage({
             xUrl={shareLinks.xUrl}
           />
 
-          <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+          <section className="ui-surface p-5">
             <h2 className="text-lg font-bold">Privacidad geografica</h2>
             <div className="mt-4 space-y-3">
               {publication.publicNotes.map((note) => (
                 <p
-                  className="rounded-md border border-[#e3dacb] bg-[#fdfbf6] p-3 text-sm leading-6 text-[#57534b]"
+                  className="rounded-md border border-border-soft bg-surface-soft p-3 text-sm leading-6 text-[#57534b]"
                   key={note}
                 >
                   {note}
@@ -165,6 +166,7 @@ export default async function PublicationDetailPage({
           </section>
         </aside>
       </section>
+      <BottomNavigation />
     </main>
   );
 }

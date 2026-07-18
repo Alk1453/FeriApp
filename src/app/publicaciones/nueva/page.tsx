@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BottomNavigation } from "@/app/_components/bottom-navigation";
 import { NewPublicationForm } from "./new-publication-form";
 
 export const metadata = {
@@ -9,13 +10,14 @@ export const metadata = {
 
 export default function NewPublicationPage() {
   return (
-    <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
+    <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
       <div className="mx-auto mb-4 w-full max-w-7xl">
         <Link className="text-sm font-bold text-[#a1452e]" href="/publicaciones">
           Publicaciones
         </Link>
       </div>
       <NewPublicationForm />
+      <BottomNavigation />
     </main>
   );
 }

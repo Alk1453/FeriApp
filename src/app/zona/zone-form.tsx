@@ -26,7 +26,7 @@ export function ZoneForm() {
 
   return (
     <div className="mt-6 grid gap-4">
-      <div className="rounded-md bg-[#fdfbf6] p-4">
+      <div className="rounded-md bg-surface-soft p-4">
         <p className="text-sm font-bold">Ubicacion publica aproximada</p>
         <p className="mt-1 text-sm leading-6 text-[#69665f]">
           FeriApp mostrara barrio, localidad y radio aproximado. No mostrara
@@ -37,7 +37,7 @@ export function ZoneForm() {
       <label className="grid gap-2 text-sm font-bold">
         Localidad
         <input
-          className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+          className="ui-field font-normal"
           onChange={(event) => setLocality(event.target.value)}
           placeholder="Ej: San Martin"
           value={locality}
@@ -47,7 +47,7 @@ export function ZoneForm() {
       <label className="grid gap-2 text-sm font-bold">
         Barrio o zona visible
         <input
-          className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+          className="ui-field font-normal"
           onChange={(event) => setNeighborhood(event.target.value)}
           placeholder="Ej: Barrio Centro"
           value={neighborhood}
@@ -55,7 +55,7 @@ export function ZoneForm() {
       </label>
 
       <button
-        className="h-12 rounded-md bg-[#193f3a] px-5 text-sm font-bold text-white"
+        className="ui-button ui-button-primary"
         onClick={saveZone}
         type="button"
       >
@@ -63,13 +63,13 @@ export function ZoneForm() {
       </button>
 
       {error ? (
-        <p className="rounded-md bg-[#f6e6d9] p-3 text-sm font-semibold text-[#8d3c28]">
+        <p className="rounded-md bg-accent-soft p-3 text-sm font-semibold text-[#a65f12]">
           {error}
         </p>
       ) : null}
 
       {savedZone ? (
-        <div className="rounded-md bg-[#e8f1df] p-3 text-sm text-[#355d2d]">
+        <div className="rounded-md bg-primary-soft p-3 text-sm text-primary-strong">
           <p className="font-bold">Zona guardada: {savedZone}</p>
           <Link className="mt-2 inline-block font-bold" href="/publicaciones/nueva">
             Crear publicacion

@@ -25,7 +25,7 @@ export function AccountForm() {
       <label className="grid gap-2 text-sm font-bold">
         Nombre visible
         <input
-          className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+          className="ui-field font-normal"
           onChange={(event) => setDisplayName(event.target.value)}
           placeholder="Ej: Juan de Barrio Centro"
           value={displayName}
@@ -35,7 +35,7 @@ export function AccountForm() {
       <label className="grid gap-2 text-sm font-bold">
         Telefono o email
         <input
-          className="h-12 rounded-md border border-[#d4c8b7] px-3 font-normal outline-none focus:border-[#193f3a]"
+          className="ui-field font-normal"
           onChange={(event) => setPhoneOrEmail(event.target.value)}
           placeholder="Para recuperar cuenta o coordinar"
           value={phoneOrEmail}
@@ -43,7 +43,7 @@ export function AccountForm() {
       </label>
 
       <button
-        className="h-12 rounded-md bg-[#193f3a] px-5 text-sm font-bold text-white"
+        className="ui-button ui-button-primary"
         onClick={saveAccount}
         type="button"
       >
@@ -51,13 +51,13 @@ export function AccountForm() {
       </button>
 
       {error ? (
-        <p className="rounded-md bg-[#f6e6d9] p-3 text-sm font-semibold text-[#8d3c28]">
+        <p className="rounded-md bg-accent-soft p-3 text-sm font-semibold text-[#a65f12]">
           {error}
         </p>
       ) : null}
 
       {savedName ? (
-        <div className="rounded-md bg-[#e8f1df] p-3 text-sm text-[#355d2d]">
+        <div className="rounded-md bg-primary-soft p-3 text-sm text-primary-strong">
           <p className="font-bold">Cuenta creada para {savedName}</p>
           <Link className="mt-2 inline-block font-bold" href="/zona">
             Continuar con zona

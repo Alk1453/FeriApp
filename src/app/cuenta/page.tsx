@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BottomNavigation } from "../_components/bottom-navigation";
 import { AccountForm } from "./account-form";
 
 export const metadata = {
@@ -8,8 +9,8 @@ export const metadata = {
 
 export default function AccountPage() {
   return (
-    <main className="min-h-screen bg-[#f5f1e8] px-4 py-5 text-[#1f211d] sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-3xl rounded-lg border border-[#d9d0c0] bg-white p-5">
+    <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
+      <section className="ui-surface mx-auto max-w-3xl p-5">
         <Link className="text-sm font-bold text-[#a1452e]" href="/">
           FeriApp
         </Link>
@@ -20,6 +21,7 @@ export default function AccountPage() {
         </p>
         <AccountForm />
       </section>
+      <BottomNavigation />
     </main>
   );
 }

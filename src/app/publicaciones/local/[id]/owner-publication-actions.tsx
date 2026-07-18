@@ -29,32 +29,32 @@ export function OwnerPublicationActions({
   }
 
   return (
-    <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+    <section className="ui-surface p-5">
       <h2 className="text-lg font-bold">Gestion del propietario</h2>
       <p className="mt-2 text-sm leading-6 text-[#69665f]">
         Acciones locales de demo para administrar el ciclo de vida de la
         publicacion.
       </p>
-      <p className="mt-3 rounded-md bg-[#fdfbf6] p-3 text-sm font-bold">
+      <p className="mt-3 rounded-md bg-surface-soft p-3 text-sm font-bold">
         Estado actual: {statusLabels[currentStatus]}
       </p>
       <div className="mt-4 grid gap-2">
         <button
-          className="h-11 rounded-md border border-[#cfc3b0] px-4 text-sm font-bold hover:bg-[#f5f1e8]"
+          className="ui-button ui-button-secondary"
           onClick={() => updateStatus("active")}
           type="button"
         >
           Activar
         </button>
         <button
-          className="h-11 rounded-md border border-[#cfc3b0] px-4 text-sm font-bold hover:bg-[#f5f1e8]"
+          className="ui-button ui-button-secondary"
           onClick={() => updateStatus("paused")}
           type="button"
         >
           Pausar
         </button>
         <button
-          className="h-11 rounded-md bg-[#a1452e] px-4 text-sm font-bold text-white"
+          className="ui-button bg-accent text-foreground hover:bg-[#dc7818]"
           onClick={() => updateStatus("closed")}
           type="button"
         >

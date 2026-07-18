@@ -39,7 +39,7 @@ export function PublicationSharePanel({
   }
 
   return (
-    <section className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white">
+    <section className="rounded-lg border border-primary bg-primary-strong p-5 text-white">
       <h2 className="text-lg font-bold">Compartir</h2>
       <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
         Esta publicacion tiene URL propia y puede circular por fuera de FeriApp
@@ -47,7 +47,7 @@ export function PublicationSharePanel({
       </p>
       <div className="mt-4 grid gap-3">
         <a
-          className="flex h-11 items-center justify-center rounded-md bg-[#f4c86b] px-4 text-sm font-bold text-[#1f211d]"
+          className="ui-button bg-accent text-foreground hover:bg-[#dc7818]"
           href={whatsappUrl}
           rel="noreferrer"
           target="_blank"
@@ -55,7 +55,7 @@ export function PublicationSharePanel({
           WhatsApp
         </a>
         <a
-          className="flex h-11 items-center justify-center rounded-md border border-white/20 px-4 text-sm font-bold text-white"
+          className="ui-button border border-white/20 text-white hover:bg-white/10"
           href={facebookUrl}
           rel="noreferrer"
           target="_blank"
@@ -63,7 +63,7 @@ export function PublicationSharePanel({
           Facebook
         </a>
         <a
-          className="flex h-11 items-center justify-center rounded-md border border-white/20 px-4 text-sm font-bold text-white"
+          className="ui-button border border-white/20 text-white hover:bg-white/10"
           href={xUrl}
           rel="noreferrer"
           target="_blank"
@@ -71,14 +71,14 @@ export function PublicationSharePanel({
           X / Twitter
         </a>
         <button
-          className="h-11 rounded-md border border-white/20 px-4 text-sm font-bold text-white"
+          className="ui-button border border-white/20 text-white hover:bg-white/10"
           onClick={shareNative}
           type="button"
         >
           Compartir desde el celular
         </button>
         <button
-          className="h-11 rounded-md bg-white px-4 text-sm font-bold text-[#193f3a]"
+          className="ui-button bg-white text-primary-strong hover:bg-primary-soft"
           onClick={copyLink}
           type="button"
         >

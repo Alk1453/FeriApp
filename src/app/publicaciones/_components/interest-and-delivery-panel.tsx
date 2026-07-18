@@ -17,7 +17,7 @@ export function InterestAndDeliveryPanel({
   const deliveryOptions = getLocalDeliveryOptions();
 
   return (
-    <section className="rounded-lg border border-[#d9d0c0] bg-white p-5">
+    <section className="ui-surface p-5">
       <h2 className="text-lg font-bold">Interes y entrega</h2>
       <p className="mt-2 text-sm leading-6 text-[#69665f]">
         Marca interes sin exponer datos sensibles. Despues se puede coordinar
@@ -25,7 +25,7 @@ export function InterestAndDeliveryPanel({
       </p>
 
       <button
-        className="mt-4 h-11 w-full rounded-md bg-[#193f3a] px-4 text-sm font-bold text-white transition hover:bg-[#102d29]"
+        className="ui-button ui-button-primary mt-4 w-full"
         onClick={() => setInterestSent(true)}
         type="button"
       >
@@ -33,7 +33,7 @@ export function InterestAndDeliveryPanel({
       </button>
 
       {interestSent ? (
-        <div className="mt-4 rounded-md bg-[#e8f1df] p-3 text-sm text-[#355d2d]">
+        <div className="mt-4 rounded-md bg-primary-soft p-3 text-sm text-primary-strong">
           <p className="font-bold">Interes registrado</p>
           <p className="mt-1 leading-6">
             Demo: FeriApp registraria interes por {publicationTitle} en{" "}
@@ -49,8 +49,8 @@ export function InterestAndDeliveryPanel({
             <button
               className={`rounded-md border p-3 text-left text-sm ${
                 deliveryNeed === "pickup"
-                  ? "border-[#193f3a] bg-[#e8f1df]"
-                  : "border-[#d4c8b7] bg-white hover:bg-[#f5f1e8]"
+                  ? "border-primary bg-primary-soft text-primary-strong"
+                  : "border-border-soft bg-white hover:bg-surface-soft"
               }`}
               onClick={() => setDeliveryNeed("pickup")}
               type="button"
@@ -63,8 +63,8 @@ export function InterestAndDeliveryPanel({
             <button
               className={`rounded-md border p-3 text-left text-sm ${
                 deliveryNeed === "delivery"
-                  ? "border-[#193f3a] bg-[#e8f1df]"
-                  : "border-[#d4c8b7] bg-white hover:bg-[#f5f1e8]"
+                  ? "border-primary bg-primary-soft text-primary-strong"
+                  : "border-border-soft bg-white hover:bg-surface-soft"
               }`}
               onClick={() => setDeliveryNeed("delivery")}
               type="button"
@@ -82,7 +82,7 @@ export function InterestAndDeliveryPanel({
         <div className="mt-4 grid gap-3">
           {deliveryOptions.map((option) => (
             <article
-              className="rounded-md border border-[#e3dacb] bg-[#fdfbf6] p-3"
+              className="rounded-md border border-border-soft bg-surface-soft p-3"
               key={option.id}
             >
               <div className="flex items-start justify-between gap-3">
@@ -92,7 +92,7 @@ export function InterestAndDeliveryPanel({
                     {option.description}
                   </p>
                 </div>
-                <span className="rounded-md bg-white px-2.5 py-1 text-xs font-bold text-[#355d2d]">
+                <span className="ui-chip ui-chip-success bg-white">
                   {option.availabilityLabel}
                 </span>
               </div>
