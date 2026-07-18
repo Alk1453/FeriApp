@@ -21,10 +21,12 @@ export default function Home() {
         <aside className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white lg:min-h-[calc(100vh-2rem)]">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#f4c86b]">
-                FeriApp
-              </p>
-              <h1 className="mt-1 text-2xl font-bold">Feria digital</h1>
+              <img
+                alt="FeriApp"
+                className="h-auto w-40 rounded-md bg-white/95 p-2"
+                src="/brand/logo-horizontal.svg"
+              />
+              <h1 className="mt-4 text-2xl font-bold">Feria digital</h1>
             </div>
             <span className="rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold">
               PWA

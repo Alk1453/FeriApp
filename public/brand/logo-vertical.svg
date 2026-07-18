@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="420" viewBox="0 0 320 420" role="img" aria-labelledby="title desc">
+  <title id="title">FeriApp logo vertical</title>
+  <desc id="desc">Puesto de feria con el nombre FeriApp en formato vertical.</desc>
+  <rect width="320" height="420" rx="28" fill="#FFFFFF"/>
+  <g transform="translate(40 32)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 78h204v178H18z" fill="#F8F9F6" stroke="#1F5E2C" stroke-width="8"/>
+    <path d="M16 30h208l17 54c3 24-25 30-39 6-11 24-45 24-56 0-11 24-45 24-56 0-11 24-45 24-56 0-14 24-42 18-39-6z" fill="#2F7D3A" stroke="#1F5E2C" stroke-width="7"/>
+    <path d="M68 32h30l-10 66c-12 14-32 10-41-8zM144 32h30l-5 66c-12 14-33 11-42-8z" fill="#F2F4F1" stroke="#F2F4F1" stroke-width="2"/>
+    <path d="M10 257h220" stroke="#1F5E2C" stroke-width="12"/>
+    <path d="M150 22c24-5 38-19 41-39-23 4-37 18-41 39z" fill="#66BB6A" stroke="#2F7D3A" stroke-width="5" transform="translate(0 12)"/>
+    <path d="M154 31c12-8 22-18 31-30" stroke="#1F5E2C" stroke-width="4"/>
+  </g>
+  <text x="160" y="190" fill="#143F24" text-anchor="middle" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="58" font-weight="900">Feri</text>
+  <text x="160" y="248" fill="#66BB6A" text-anchor="middle" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="58" font-weight="900">App</text>
+  <text x="160" y="334" fill="#1F5E2C" text-anchor="middle" font-family="Nunito, Poppins, Arial, sans-serif" font-size="19" font-weight="800">La feria digital</text>
+  <text x="160" y="360" fill="#1F5E2C" text-anchor="middle" font-family="Nunito, Poppins, Arial, sans-serif" font-size="19" font-weight="800">de tu barrio</text>
+</svg>

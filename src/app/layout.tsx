@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   title: "FeriApp",
   description:
     "La feria digital de tu barrio para compraventa, trueque, donaciones y comunidad local.",
+  icons: {
+    icon: [
+      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
+  },
   openGraph: {
     title: "FeriApp - La feria digital de tu barrio",
     description:

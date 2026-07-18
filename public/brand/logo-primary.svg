@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">FeriApp logo principal</title>
+  <desc id="desc">Puesto de feria verde con el nombre FeriApp, una planta, una caja y una bicicleta.</desc>
+  <rect width="640" height="360" rx="28" fill="#FFFFFF"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M94 128h452" stroke="#1F5E2C" stroke-width="14"/>
+    <path d="M108 132h424v156H108z" fill="#F8F9F6" stroke="#1F5E2C" stroke-width="10"/>
+    <path d="M100 84h440l22 60c4 28-44 31-53 3-8 28-56 28-64 0-8 28-56 28-64 0-8 28-56 28-64 0-8 28-56 28-64 0-8 28-56 28-64 0-9 28-57 25-53-3z" fill="#2F7D3A" stroke="#1F5E2C" stroke-width="8"/>
+    <path d="M176 86h54l-14 68c-14 20-48 15-54-7zM312 86h54l-9 68c-12 18-47 18-56 0zM448 86h54l17 61c-7 22-42 27-56 7z" fill="#F2F4F1" stroke="#F2F4F1" stroke-width="2"/>
+    <path d="M88 286h464" stroke="#1F5E2C" stroke-width="18"/>
+    <path d="M383 75c29-5 46-23 49-48-28 5-45 22-49 48z" fill="#66BB6A" stroke="#2F7D3A" stroke-width="5"/>
+    <path d="M386 72c16-10 28-22 39-37" stroke="#1F5E2C" stroke-width="4"/>
+  </g>
+  <text x="128" y="226" fill="#143F24" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="76" font-weight="900">Feri</text>
+  <text x="282" y="226" fill="#66BB6A" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="76" font-weight="900">App</text>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M176 252h40v28h-40z" fill="#B8752F" stroke="#8B541F" stroke-width="4"/>
+    <path d="M196 252v-36" stroke="#2F7D3A" stroke-width="6"/>
+    <path d="M195 230c-18-5-27-18-27-33 18 4 27 17 27 33z" fill="#66BB6A" stroke="#2F7D3A" stroke-width="4"/>
+    <path d="M198 226c18-8 25-23 22-38-18 8-26 22-22 38z" fill="#66BB6A" stroke="#2F7D3A" stroke-width="4"/>
+    <path d="M277 248h64v35h-64z" fill="#C98232" stroke="#8B541F" stroke-width="4"/>
+    <path d="M277 248l32-17 32 17M309 231v52M277 266l32 16 32-16" stroke="#8B541F" stroke-width="4"/>
+    <circle cx="432" cy="276" r="18" stroke="#143F24" stroke-width="5"/>
+    <circle cx="496" cy="276" r="18" stroke="#143F24" stroke-width="5"/>
+    <path d="M432 276l28-42h17l19 42M460 234l16 42M449 250h38M463 224h20" stroke="#143F24" stroke-width="5"/>
+  </g>
+  <text x="320" y="335" fill="#1F5E2C" text-anchor="middle" font-family="Nunito, Poppins, Arial, sans-serif" font-size="26" font-weight="800">La feria digital de tu barrio</text>
+</svg>

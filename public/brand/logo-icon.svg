@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">FeriApp icono de aplicacion</title>
+  <desc id="desc">Icono cuadrado redondeado con puesto de feria y letras FA.</desc>
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="#2F7D3A"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 192h256v214H128z" fill="#F8F9F6" stroke="#1F5E2C" stroke-width="18"/>
+    <path d="M116 124h280l28 78c6 43-50 47-65 6-15 42-78 42-93 0-15 42-78 42-93 0-15 41-71 37-65-6z" fill="#F2F4F1" stroke="#1F5E2C" stroke-width="16"/>
+    <path d="M116 124h70l-18 92c-26 25-64 12-60-14zM256 124h70l-8 92c-25 25-65 16-70-8z" fill="#2F7D3A" stroke="#2F7D3A" stroke-width="4"/>
+    <path d="M118 406h276" stroke="#1F5E2C" stroke-width="24"/>
+    <path d="M283 100c42-8 66-33 71-70-40 7-64 31-71 70z" fill="#66BB6A" stroke="#1F5E2C" stroke-width="10"/>
+    <path d="M289 96c21-14 39-31 54-52" stroke="#1F5E2C" stroke-width="7"/>
+  </g>
+  <text x="178" y="326" fill="#143F24" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="118" font-weight="900">F</text>
+  <text x="262" y="326" fill="#66BB6A" font-family="Nunito, Poppins, Arial Rounded MT Bold, Arial, sans-serif" font-size="118" font-weight="900">A</text>
+</svg>

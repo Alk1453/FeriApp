@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#2F7D3A"/>
+  <path d="M14 24h36v27H14z" fill="#F8F9F6"/>
+  <path d="M12 17h40l4 10c1 7-7 8-9 1-2 7-11 7-13 0-2 7-11 7-13 0-2 7-10 6-9-1z" fill="#F2F4F1"/>
+  <path d="M12 17h10l-3 12c-4 3-8 2-9-2zM32 17h10l-1 12c-4 3-9 2-10-1z" fill="#2F7D3A"/>
+  <path d="M14 51h36" stroke="#1F5E2C" stroke-width="4" stroke-linecap="round"/>
+  <path d="M35 14c7-2 11-6 12-12-7 1-11 5-12 12z" fill="#66BB6A"/>
+  <text x="32" y="43" text-anchor="middle" fill="#143F24" font-family="Arial Rounded MT Bold, Nunito, Arial, sans-serif" font-size="18" font-weight="900">FA</text>
+</svg>
