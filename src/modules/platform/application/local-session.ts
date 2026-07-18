@@ -43,6 +43,7 @@ export function saveLocalAccount(input: {
     id: `account-${Date.now()}`,
     displayName: input.displayName,
     phoneOrEmail: input.phoneOrEmail,
+    accessTier: "free-account",
     createdAt: new Date().toISOString(),
   });
 

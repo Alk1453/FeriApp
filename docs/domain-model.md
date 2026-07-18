@@ -7,6 +7,13 @@ Perfil:
 - representa a una persona, comercio, profesional, empresa o prestador;
 - concentra identidad, zona, validaciones, reputacion y permisos.
 
+Nivel de usuario:
+
+- define que puede ver y hacer un perfil o visitante;
+- separa visitante, cuenta gratuita, usuario de confianza y propietario;
+- aumenta precision y permisos de forma progresiva;
+- nunca habilita ubicacion exacta sin consentimiento del propietario.
+
 Publicacion simple:
 
 - oferta puntual de venta, trueque, regalo, donacion o servicio;

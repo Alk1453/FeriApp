@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BottomNavigation } from "../_components/bottom-navigation";
 import { AccountForm } from "./account-form";
+import { UserAccessSummary } from "./user-access-summary";
 
 export const metadata = {
   title: "Cuenta | FeriApp",
@@ -20,6 +21,7 @@ export default function AccountPage() {
           una identidad minima de confianza.
         </p>
         <AccountForm />
+        <UserAccessSummary />
       </section>
       <BottomNavigation />
     </main>

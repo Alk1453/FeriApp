@@ -12,6 +12,7 @@ import {
 } from "@/modules/marketplace/application/get-publication-share-links";
 import { BottomNavigation } from "@/app/_components/bottom-navigation";
 import { InterestAndDeliveryPanel } from "../_components/interest-and-delivery-panel";
+import { LocationDisclosurePanel } from "../_components/location-disclosure-panel";
 import { PublicationSharePanel } from "../_components/publication-share-panel";
 
 type PublicationDetailPageProps = {
@@ -117,23 +118,7 @@ export default async function PublicationDetailPage({
               {publication.description}
             </p>
 
-            <section className="ui-surface-soft mt-6 grid gap-3 p-4 sm:grid-cols-2">
-              <div>
-                <p className="text-xs font-bold uppercase text-[#69665f]">
-                  Zona publica
-                </p>
-                <p className="mt-1 font-semibold">
-                  {publication.location.neighborhood},{" "}
-                  {publication.location.locality}
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase text-[#69665f]">
-                  Contacto
-                </p>
-                <p className="mt-1 font-semibold">{publication.contact.label}</p>
-              </div>
-            </section>
+            <LocationDisclosurePanel publication={publication} />
           </div>
         </article>
 

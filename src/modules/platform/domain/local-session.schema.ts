@@ -4,6 +4,7 @@ export const localAccountSchema = z.object({
   id: z.string().min(1),
   displayName: z.string().min(2),
   phoneOrEmail: z.string().min(5),
+  accessTier: z.enum(["free-account", "trusted-user"]).default("free-account"),
   createdAt: z.string().min(1),
 });
 

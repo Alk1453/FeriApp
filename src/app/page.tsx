@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getLocationDisclosure } from "@/modules/marketplace/application/get-location-disclosure";
 import { getNearbyListings } from "@/modules/marketplace/application/get-nearby-listings";
 import {
   getExpansionModules,
@@ -6,6 +7,7 @@ import {
 } from "@/modules/platform/application/get-platform-modules";
 import { getRadarAlerts } from "@/modules/radar/application/get-radar-alerts";
 import { BottomNavigation } from "./_components/bottom-navigation";
+import { LocalRadar } from "./_components/local-radar";
 
 export default function Home() {
   const listings = getNearbyListings();
@@ -96,6 +98,8 @@ export default function Home() {
             </div>
           </header>
 
+          <LocalRadar listings={listings} />
+
           <section className="grid gap-6 xl:grid-cols-[1fr_340px]">
             <div className="ui-surface">
               <div className="flex flex-col gap-2 border-b border-border-soft px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
@@ -122,13 +126,17 @@ export default function Home() {
                           {item.kindLabel}
                         </span>
                         <span className="text-sm font-medium text-[#69665f]">
-                          {item.location.distanceLabel}
+                          {
+                            getLocationDisclosure({
+                              item,
+                              tier: "visitor",
+                            }).label
+                          }
                         </span>
                       </div>
                       <h4 className="mt-3 text-lg font-bold">{item.title}</h4>
                       <p className="mt-1 text-sm text-[#69665f]">
-                        {item.location.neighborhood}, {item.location.locality} -{" "}
-                        {item.trustLabel}
+                        {item.trustLabel} - mas detalle al crear cuenta
                       </p>
                     </div>
                     <div className="flex items-center justify-between gap-4 md:flex-col md:items-end">
