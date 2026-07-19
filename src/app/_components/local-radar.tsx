@@ -17,6 +17,7 @@ import {
 
 type LocalRadarProps = {
   listings: ListingSummary[];
+  variant?: "full" | "hero";
 };
 
 const pointPositions = [
@@ -25,7 +26,7 @@ const pointPositions = [
   "left-[48%] top-[68%]",
 ];
 
-export function LocalRadar({ listings }: LocalRadarProps) {
+export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
   const account = useSyncExternalStore(
     subscribeToLocalSession,
     readLocalAccount,
@@ -42,52 +43,63 @@ export function LocalRadar({ listings }: LocalRadarProps) {
         : getUserAccessProfile({ account, zone }),
     [account, showTrustedPreview, zone],
   );
+  const hero = variant === "hero";
 
   return (
     <section className="overflow-hidden rounded-lg border border-primary/20 bg-white shadow-[0_18px_50px_rgba(32,35,31,0.08)]">
-      <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[0.82fr_1.18fr] lg:p-7">
-        <div className="flex flex-col justify-center">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="ui-chip ui-chip-success">Radar local</span>
-            <span className="ui-chip ui-chip-info">{accessProfile.label}</span>
-          </div>
+      <div
+        className={`grid gap-5 p-5 sm:p-6 lg:p-7 ${
+          hero ? "lg:grid-cols-1" : "lg:grid-cols-[0.82fr_1.18fr]"
+        }`}
+      >
+        {hero ? null : (
+          <div className="flex flex-col justify-center">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="ui-chip ui-chip-success">Radar local</span>
+              <span className="ui-chip ui-chip-info">{accessProfile.label}</span>
+            </div>
 
-          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight sm:text-5xl">
-            Lo que queres o necesitas, oportunidades cerca.
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-            Descubre ventas, trueques, donaciones y servicios alrededor tuyo. La
-            precision aumenta con cuenta, confianza y consentimiento.
-          </p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight sm:text-5xl">
+              Lo que queres o necesitas, oportunidades cerca.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
+              Descubre ventas, trueques, donaciones y servicios alrededor tuyo. La
+              precision aumenta con cuenta, confianza y consentimiento.
+            </p>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <Link className="ui-button ui-button-primary" href="/publicaciones">
-              Explorar radar
-            </Link>
-            {account ? (
-              <Link className="ui-button ui-button-secondary" href="/publicaciones/nueva">
-                Publicar cerca
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <Link className="ui-button ui-button-primary" href="/publicaciones">
+                Explorar radar
               </Link>
-            ) : (
-              <Link className="ui-button ui-button-secondary" href="/cuenta">
-                Crear cuenta gratuita
-              </Link>
-            )}
-          </div>
+              {account ? (
+                <Link className="ui-button ui-button-secondary" href="/publicaciones/nueva">
+                  Publicar cerca
+                </Link>
+              ) : (
+                <Link className="ui-button ui-button-secondary" href="/cuenta">
+                  Crear cuenta gratuita
+                </Link>
+              )}
+            </div>
 
-          <button
-            className="mt-4 text-sm font-extrabold text-primary-strong"
-            onClick={() => setShowTrustedPreview((current) => !current)}
-            type="button"
-          >
-            {showTrustedPreview
-              ? "Ver como usuario actual"
-              : "Previsualizar usuario de confianza"}
-          </button>
-        </div>
+            <button
+              className="mt-4 text-sm font-extrabold text-primary-strong"
+              onClick={() => setShowTrustedPreview((current) => !current)}
+              type="button"
+            >
+              {showTrustedPreview
+                ? "Ver como usuario actual"
+                : "Previsualizar usuario de confianza"}
+            </button>
+          </div>
+        )}
 
         <div className="rounded-lg border border-border-soft bg-surface-soft p-3">
-          <div className="relative min-h-[360px] overflow-hidden rounded-lg bg-[radial-gradient(circle_at_center,#ffffff_0,#f1f4ee_40%,#e8f3ea_100%)] sm:min-h-[430px] lg:min-h-[520px]">
+          <div
+            className={`relative overflow-hidden rounded-lg bg-[radial-gradient(circle_at_center,#ffffff_0,#f1f4ee_40%,#e8f3ea_100%)] ${
+              hero ? "min-h-[380px] sm:min-h-[480px]" : "min-h-[360px] sm:min-h-[430px] lg:min-h-[520px]"
+            }`}
+          >
             <div className="absolute left-1/2 top-1/2 size-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/20" />
             <div className="absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/15" />
             <div className="absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10" />
