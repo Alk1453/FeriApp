@@ -96,6 +96,28 @@ Busco / necesito con el titulo sugerido.
 Esto convierte una busqueda sin resultado en una senal util para la comunidad y
 para futuros oferentes.
 
+## Matching inicial
+
+El primer matching no debe intentar ser inteligencia artificial compleja. Debe
+ser explicable y confiable:
+
+- coincidencia por categoria;
+- coincidencia por palabras clave;
+- prioridad extra cuando la necesidad acepta trueque y la publicacion tambien es
+  de trueque;
+- solo publicaciones activas;
+- pocas sugerencias, para no saturar.
+
+La UI debe mostrar por que sugiere una publicacion, por ejemplo:
+
+```text
+Busca bicicleta rodado 26 -> Bicicleta urbana rodado 26
+Razon: coincide por categoria y cercania.
+```
+
+Mas adelante este motor puede alimentar notificaciones, estadisticas locales y
+recomendaciones para comercios o puestos virtuales.
+
 ## Riesgos a cuidar
 
 - no saturar el radar con pedidos irrelevantes;

@@ -8,6 +8,7 @@ import type {
 } from "@/modules/marketplace/domain/listing";
 import { getLocationDisclosure } from "@/modules/marketplace/application/get-location-disclosure";
 import { getLocalOpportunityRequests } from "@/modules/radar/application/get-local-opportunity-requests";
+import { matchOpportunityRequests } from "@/modules/radar/application/match-opportunity-requests";
 import {
   readLocalAccount,
   readLocalZone,
@@ -163,6 +164,21 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
       }),
     [activeMode, normalizedQuery, requests],
   );
+  const opportunityMatches = useMemo(
+    () =>
+      matchOpportunityRequests({
+        listings,
+        requests: filteredRequests,
+      }),
+    [filteredRequests, listings],
+  );
+  const matchesByRequestId = useMemo(
+    () =>
+      new Map(
+        opportunityMatches.map((match) => [match.request.id, match.listings]),
+      ),
+    [opportunityMatches],
+  );
   const visibleListings = filteredListings.slice(0, 3);
   const visibleRequests = filteredRequests.slice(0, 2);
   const publishNeedHref = `/publicaciones/nueva?tipo=need${
@@ -171,23 +187,23 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
       : ""
   }`;
   const listingSignals: RadarSignal[] = visibleListings.map((item) => ({
-      id: item.id,
-      title: item.title,
-      href: `/publicaciones/${item.slug}`,
-      label: item.kindLabel,
-      tone: getSignalTone(item.kind),
-    }));
+    id: item.id,
+    title: item.title,
+    href: `/publicaciones/${item.slug}`,
+    label: item.kindLabel,
+    tone: getSignalTone(item.kind),
+  }));
   const requestSignals: RadarSignal[] = visibleRequests.map((request) => ({
-      id: request.id,
-      title: request.title,
-      href: `/publicaciones/nueva?tipo=need&titulo=${encodeURIComponent(
-        request.title,
-      )}`,
-      label: request.intentLabel,
-      tone: request.intentLabel.toLowerCase().includes("trueque")
-        ? "barter"
-        : "need",
-    }));
+    id: request.id,
+    title: request.title,
+    href: `/publicaciones/nueva?tipo=need&titulo=${encodeURIComponent(
+      request.title,
+    )}`,
+    label: request.intentLabel,
+    tone: request.intentLabel.toLowerCase().includes("trueque")
+      ? "barter"
+      : "need",
+  }));
   const radarSignals: RadarSignal[] = [
     ...listingSignals,
     ...requestSignals,
@@ -409,6 +425,25 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
               <p className="mt-1 text-xs leading-5 text-muted">
                 {request.matchHint}
               </p>
+              <div className="mt-3 space-y-2">
+                {(matchesByRequestId.get(request.id) ?? []).map((match) => (
+                  <Link
+                    className="block rounded-md border border-border-soft bg-surface-soft p-2 transition hover:border-primary hover:bg-primary-soft"
+                    href={`/publicaciones/${match.listing.slug}`}
+                    key={match.listing.id}
+                  >
+                    <span className="text-[11px] font-extrabold uppercase text-primary-strong">
+                      Coincidencia sugerida
+                    </span>
+                    <span className="mt-1 block text-xs font-bold">
+                      {match.listing.title}
+                    </span>
+                    <span className="mt-1 block text-[11px] leading-4 text-muted">
+                      {match.reason}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </article>
           ))}
           {filteredRequests.length === 0 ? (
