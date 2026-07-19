@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -107,11 +107,6 @@ type DraftState = {
   contactMode: ContactMode;
 };
 
-type NewPublicationFormProps = {
-  initialKind?: string;
-  initialTitle?: string;
-};
-
 const initialDraft: DraftState = {
   title: "",
   description: "",
@@ -139,10 +134,7 @@ function parsePublicationKind(value?: string): PublicationKind {
     : "sale";
 }
 
-function getInitialDraft({
-  initialKind,
-  initialTitle,
-}: NewPublicationFormProps): DraftState {
+function getInitialDraft(initialKind?: string, initialTitle?: string): DraftState {
   const kind = parsePublicationKind(initialKind);
   const selectedKind =
     publicationKinds.find((item) => item.value === kind) ?? publicationKinds[0];
@@ -157,10 +149,7 @@ function getInitialDraft({
   };
 }
 
-export function NewPublicationForm({
-  initialKind,
-  initialTitle,
-}: NewPublicationFormProps) {
+export function NewPublicationForm() {
   const router = useRouter();
   const account = useSyncExternalStore(
     subscribeToLocalSession,
@@ -168,13 +157,23 @@ export function NewPublicationForm({
     () => null,
   );
   const zone = useSyncExternalStore(subscribeToLocalSession, readLocalZone, () => null);
-  const [draft, setDraft] = useState<DraftState>(() =>
-    getInitialDraft({ initialKind, initialTitle }),
-  );
+  const [draft, setDraft] = useState<DraftState>(initialDraft);
   const [saveStatus, setSaveStatus] = useState("");
   const selectedKind = getKind(draft.kind);
   const selectedContact = getContactMode(draft.contactMode);
   const isNeed = draft.kind === "need";
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialKind = params.get("tipo") ?? undefined;
+    const initialTitle = params.get("titulo") ?? undefined;
+
+    if (!initialKind && !initialTitle) {
+      return;
+    }
+
+    setDraft(getInitialDraft(initialKind, initialTitle));
+  }, []);
 
   const validation = useMemo(
     () =>
