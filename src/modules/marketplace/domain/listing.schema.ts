@@ -10,7 +10,7 @@ export const listingSummarySchema = z.object({
   id: z.string().min(1),
   slug: z.string().min(1),
   title: z.string().min(3),
-  kind: z.enum(["sale", "barter", "donation", "gift", "service"]),
+  kind: z.enum(["sale", "barter", "donation", "gift", "service", "need"]),
   kindLabel: z.string().min(1),
   priceLabel: z.string().min(1),
   category: z.enum([
@@ -50,7 +50,7 @@ export const publicationDraftSchema = z.object({
   description: z
     .string()
     .min(20, "La descripcion necesita al menos 20 caracteres."),
-  kind: z.enum(["sale", "barter", "donation", "gift", "service"]),
+  kind: z.enum(["sale", "barter", "donation", "gift", "service", "need"]),
   category: z.enum([
     "home",
     "transport",

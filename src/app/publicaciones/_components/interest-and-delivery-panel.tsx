@@ -13,6 +13,8 @@ export function InterestAndDeliveryPanel({
   publicZone,
 }: InterestAndDeliveryPanelProps) {
   const [interestSent, setInterestSent] = useState(false);
+  const [proposalMode, setProposalMode] = useState<"buy" | "barter">("buy");
+  const [barterOffer, setBarterOffer] = useState("");
   const [deliveryNeed, setDeliveryNeed] = useState<"pickup" | "delivery" | "">("");
   const deliveryOptions = getLocalDeliveryOptions();
 
@@ -40,6 +42,58 @@ export function InterestAndDeliveryPanel({
             {publicZone}.
           </p>
         </div>
+      ) : null}
+
+      {interestSent ? (
+        <fieldset className="mt-4 grid gap-3">
+          <legend className="text-sm font-bold">Como queres proponer?</legend>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <button
+              className={`rounded-md border p-3 text-left text-sm ${
+                proposalMode === "buy"
+                  ? "border-primary bg-primary-soft text-primary-strong"
+                  : "border-border-soft bg-white hover:bg-surface-soft"
+              }`}
+              onClick={() => setProposalMode("buy")}
+              type="button"
+            >
+              <span className="font-bold">Consultar / comprar</span>
+              <span className="mt-1 block text-[#69665f]">
+                Seguir la forma de contacto elegida por el propietario.
+              </span>
+            </button>
+            <button
+              className={`rounded-md border p-3 text-left text-sm ${
+                proposalMode === "barter"
+                  ? "border-primary bg-primary-soft text-primary-strong"
+                  : "border-border-soft bg-white hover:bg-surface-soft"
+              }`}
+              onClick={() => setProposalMode("barter")}
+              type="button"
+            >
+              <span className="font-bold">Ofrecer trueque</span>
+              <span className="mt-1 block text-[#69665f]">
+                Proponer algo aunque el vendedor no lo haya pedido.
+              </span>
+            </button>
+          </div>
+
+          {proposalMode === "barter" ? (
+            <label className="grid gap-2 text-sm font-bold">
+              Que ofreces a cambio?
+              <textarea
+                className="ui-field min-h-24 font-normal leading-6"
+                onChange={(event) => setBarterOffer(event.target.value)}
+                placeholder="Ej: ofrezco herramientas, una bici menor o servicio de pintura."
+                value={barterOffer}
+              />
+              <span className="text-xs font-normal leading-5 text-muted">
+                Demo: esta propuesta quedaria dentro de FeriApp para que el
+                propietario pueda aceptarla, rechazarla o responder.
+              </span>
+            </label>
+          ) : null}
+        </fieldset>
       ) : null}
 
       {interestSent ? (

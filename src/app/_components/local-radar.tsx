@@ -4,6 +4,7 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import type { ListingSummary } from "@/modules/marketplace/domain/listing";
 import { getLocationDisclosure } from "@/modules/marketplace/application/get-location-disclosure";
+import { getLocalOpportunityRequests } from "@/modules/radar/application/get-local-opportunity-requests";
 import {
   readLocalAccount,
   readLocalZone,
@@ -32,6 +33,7 @@ export function LocalRadar({ listings }: LocalRadarProps) {
   );
   const zone = useSyncExternalStore(subscribeToLocalSession, readLocalZone, () => null);
   const [showTrustedPreview, setShowTrustedPreview] = useState(false);
+  const requests = getLocalOpportunityRequests();
 
   const accessProfile = useMemo(
     () =>
@@ -144,6 +146,47 @@ export function LocalRadar({ listings }: LocalRadarProps) {
             </Link>
           );
         })}
+      </div>
+
+      <div className="border-t border-border-soft bg-accent-soft px-5 py-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-base font-extrabold">
+              Busquedas y necesidades cerca
+            </h3>
+            <p className="text-sm leading-6 text-muted">
+              El radar tambien muestra demanda real: quien busca, necesita o
+              aceptaria trueque.
+            </p>
+          </div>
+          <Link className="ui-button ui-button-secondary" href="/publicaciones/nueva">
+            Publicar busqueda
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-2 md:grid-cols-3">
+          {requests.map((request) => (
+            <article
+              className="rounded-md border border-white/70 bg-white p-3"
+              key={request.id}
+            >
+              <div className="flex flex-wrap gap-2">
+                <span className="ui-chip ui-chip-info">
+                  {request.categoryLabel}
+                </span>
+                <span className="ui-chip ui-chip-warning">
+                  {request.intentLabel}
+                </span>
+              </div>
+              <h4 className="mt-3 text-sm font-extrabold">{request.title}</h4>
+              <p className="mt-1 text-sm font-bold text-primary-strong">
+                {request.distanceHint}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted">
+                {request.matchHint}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

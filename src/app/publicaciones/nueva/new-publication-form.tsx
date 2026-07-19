@@ -45,6 +45,12 @@ const publicationKinds = [
     hint: "Oficio, reparacion, flete o ayuda local.",
     pricePlaceholder: "Desde $10.000",
   },
+  {
+    value: "need",
+    label: "Busco / necesito",
+    hint: "Pedido visible para que el barrio pueda ofrecer.",
+    pricePlaceholder: "Busco usado o por trueque",
+  },
 ] as const;
 
 const categories = [
@@ -276,7 +282,7 @@ export function NewPublicationForm() {
 
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold">Tipo de publicacion</legend>
-            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
               {publicationKinds.map((kind) => (
                 <button
                   className={`min-h-24 rounded-md border p-3 text-left text-sm transition ${

@@ -1,6 +1,12 @@
 import type { PublicLocation } from "@/shared/domain/territory";
 
-export type ListingKind = "sale" | "barter" | "donation" | "gift" | "service";
+export type ListingKind =
+  | "sale"
+  | "barter"
+  | "donation"
+  | "gift"
+  | "service"
+  | "need";
 
 export type PublicationStatus =
   | "draft"
