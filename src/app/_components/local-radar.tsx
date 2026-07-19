@@ -170,15 +170,14 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
       ? `&titulo=${encodeURIComponent(query.trim())}`
       : ""
   }`;
-  const radarSignals: RadarSignal[] = [
-    ...visibleListings.map((item) => ({
+  const listingSignals: RadarSignal[] = visibleListings.map((item) => ({
       id: item.id,
       title: item.title,
       href: `/publicaciones/${item.slug}`,
       label: item.kindLabel,
       tone: getSignalTone(item.kind),
-    })),
-    ...visibleRequests.map((request) => ({
+    }));
+  const requestSignals: RadarSignal[] = visibleRequests.map((request) => ({
       id: request.id,
       title: request.title,
       href: `/publicaciones/nueva?tipo=need&titulo=${encodeURIComponent(
@@ -188,7 +187,10 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
       tone: request.intentLabel.toLowerCase().includes("trueque")
         ? "barter"
         : "need",
-    })),
+    }));
+  const radarSignals: RadarSignal[] = [
+    ...listingSignals,
+    ...requestSignals,
   ].slice(0, pointPositions.length);
   const resultCount = filteredListings.length + filteredRequests.length;
 
