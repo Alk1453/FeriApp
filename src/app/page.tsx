@@ -21,11 +21,13 @@ export default function Home() {
         <header className="grid gap-6 rounded-lg border border-primary/20 bg-white p-5 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:p-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
           <div className="flex flex-col justify-between gap-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-              <img
-                alt="FeriApp"
-                className="h-auto w-44 shrink-0"
-                src="/brand/logo-sidebar-dark.svg"
-              />
+              <div className="w-fit shrink-0 rounded-lg border border-primary/25 bg-white p-2 shadow-sm">
+                <img
+                  alt="FeriApp"
+                  className="h-auto w-48"
+                  src="/brand/logo-primary.svg"
+                />
+              </div>
               <div>
                 <p className="text-sm font-extrabold uppercase text-primary-strong">
                   La feria digital de tu barrio
