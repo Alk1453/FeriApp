@@ -64,16 +64,48 @@ export default function Home() {
         </aside>
 
         <div className="flex flex-col gap-6">
+          <header className="rounded-lg border border-primary/20 bg-white p-5 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:p-6">
+            <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
+              <div>
+                <p className="text-sm font-extrabold uppercase text-primary-strong">
+                  La feria digital de tu barrio
+                </p>
+                <h2 className="mt-2 max-w-4xl text-4xl font-black leading-tight text-foreground sm:text-5xl">
+                  Buscá, ofrecé y conectá cerca tuyo.
+                </h2>
+                <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+                  Encontrá oportunidades reales del barrio: ventas, servicios,
+                  trueques, donaciones y personas que buscan lo que vos podés
+                  ofrecer.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 xl:min-w-80 xl:grid-cols-1">
+                <Link
+                  className="ui-button ui-button-primary w-full"
+                  href="/publicaciones"
+                >
+                  Explorar ahora
+                </Link>
+                <Link
+                  className="ui-button ui-button-secondary w-full"
+                  href="/publicaciones/nueva"
+                >
+                  Publicar gratis
+                </Link>
+              </div>
+            </div>
+          </header>
+
           <LocalRadar listings={listings} />
 
           <header className="ui-surface p-4 sm:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase text-[#a1452e]">
-                  La feria digital de tu barrio
+                  Buscar por categoria
                 </p>
                 <h2 className="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">
-                  Compra, cambia, dona y descubre oportunidades cerca de casa.
+                  Explorá productos, servicios y necesidades del barrio.
                 </h2>
               </div>
               <Link
