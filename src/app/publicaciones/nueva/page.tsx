@@ -9,16 +9,19 @@ export const metadata = {
 };
 
 type NewPublicationPageProps = {
-  searchParams?: Promise<{
-    tipo?: string;
-    titulo?: string;
-  }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export default async function NewPublicationPage({
   searchParams,
 }: NewPublicationPageProps) {
   const params = await searchParams;
+  const initialKind = Array.isArray(params?.tipo)
+    ? params?.tipo[0]
+    : params?.tipo;
+  const initialTitle = Array.isArray(params?.titulo)
+    ? params?.titulo[0]
+    : params?.titulo;
 
   return (
     <main className="ui-page px-4 py-5 pb-24 sm:px-6 lg:px-8 md:pb-5">
@@ -27,7 +30,7 @@ export default async function NewPublicationPage({
           Publicaciones
         </Link>
       </div>
-      <NewPublicationForm initialKind={params?.tipo} initialTitle={params?.titulo} />
+      <NewPublicationForm initialKind={initialKind} initialTitle={initialTitle} />
       <BottomNavigation />
     </main>
   );
