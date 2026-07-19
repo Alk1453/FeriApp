@@ -107,6 +107,11 @@ type DraftState = {
   contactMode: ContactMode;
 };
 
+type NewPublicationFormProps = {
+  initialKind?: string;
+  initialTitle?: string;
+};
+
 const initialDraft: DraftState = {
   title: "",
   description: "",
@@ -128,7 +133,34 @@ function getKind(value: PublicationKind) {
   return publicationKinds.find((kind) => kind.value === value) ?? publicationKinds[0];
 }
 
-export function NewPublicationForm() {
+function parsePublicationKind(value?: string): PublicationKind {
+  return publicationKinds.some((kind) => kind.value === value)
+    ? (value as PublicationKind)
+    : "sale";
+}
+
+function getInitialDraft({
+  initialKind,
+  initialTitle,
+}: NewPublicationFormProps): DraftState {
+  const kind = parsePublicationKind(initialKind);
+  const selectedKind =
+    publicationKinds.find((item) => item.value === kind) ?? publicationKinds[0];
+  const cleanTitle = initialTitle?.trim().slice(0, 90) ?? "";
+
+  return {
+    ...initialDraft,
+    kind,
+    title: cleanTitle,
+    priceLabel: kind === "need" ? selectedKind.pricePlaceholder : "",
+    contactMode: kind === "need" ? "in-app" : "whatsapp",
+  };
+}
+
+export function NewPublicationForm({
+  initialKind,
+  initialTitle,
+}: NewPublicationFormProps) {
   const router = useRouter();
   const account = useSyncExternalStore(
     subscribeToLocalSession,
@@ -136,10 +168,13 @@ export function NewPublicationForm() {
     () => null,
   );
   const zone = useSyncExternalStore(subscribeToLocalSession, readLocalZone, () => null);
-  const [draft, setDraft] = useState<DraftState>(initialDraft);
+  const [draft, setDraft] = useState<DraftState>(() =>
+    getInitialDraft({ initialKind, initialTitle }),
+  );
   const [saveStatus, setSaveStatus] = useState("");
   const selectedKind = getKind(draft.kind);
   const selectedContact = getContactMode(draft.contactMode);
+  const isNeed = draft.kind === "need";
 
   const validation = useMemo(
     () =>
@@ -204,10 +239,13 @@ export function NewPublicationForm() {
       <form className="ui-surface p-4 sm:p-5">
         <div className="flex flex-col gap-3 border-b border-[#e7dfd1] pb-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Nueva publicacion</h1>
+            <h1 className="text-3xl font-bold">
+              {isNeed ? "Publicar busqueda" : "Nueva publicacion"}
+            </h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#69665f]">
-              Crea una publicacion clara, cercana y compartible sin exponer tu
-              ubicacion exacta.
+              {isNeed
+                ? "Contale al barrio que necesitas para que aparezca ante posibles oferentes, sin exponer tu ubicacion exacta."
+                : "Crea una publicacion clara, cercana y compartible sin exponer tu ubicacion exacta."}
             </p>
           </div>
           <span className="ui-chip ui-chip-success w-fit">
@@ -260,7 +298,11 @@ export function NewPublicationForm() {
               onChange={(event) =>
                 setDraft((current) => ({ ...current, title: event.target.value }))
               }
-              placeholder="Ej: Silla de comedor para donar"
+              placeholder={
+                isNeed
+                  ? "Ej: Busco bicicleta rodado 26"
+                  : "Ej: Silla de comedor para donar"
+              }
               value={draft.title}
             />
           </label>
@@ -275,7 +317,11 @@ export function NewPublicationForm() {
                   description: event.target.value,
                 }))
               }
-              placeholder="Contale al barrio que ofreces, estado, condiciones y como se coordina."
+              placeholder={
+                isNeed
+                  ? "Contale que buscas, para que lo necesitas, si aceptas compra, trueque, donacion o ayuda."
+                  : "Contale al barrio que ofreces, estado, condiciones y como se coordina."
+              }
               value={draft.description}
             />
           </label>
@@ -331,7 +377,7 @@ export function NewPublicationForm() {
             </label>
 
             <label className="grid gap-2 text-sm font-bold">
-              Precio o condicion
+              {isNeed ? "Condicion o propuesta" : "Precio o condicion"}
               <input
                 className="ui-field font-normal"
                 onChange={(event) =>
@@ -379,9 +425,15 @@ export function NewPublicationForm() {
           <fieldset className="grid gap-3">
             <legend className="text-sm font-bold">Imagenes</legend>
             <div className="rounded-md border border-dashed border-border-soft bg-surface-soft p-4">
-              <p className="text-sm font-semibold">Agregar fotos del producto</p>
+              <p className="text-sm font-semibold">
+                {isNeed
+                  ? "Agregar imagen de referencia"
+                  : "Agregar fotos del producto"}
+              </p>
               <p className="mt-1 text-sm leading-6 text-[#69665f]">
-                En esta version demo contamos fotos; luego se conectara Storage.
+                {isNeed
+                  ? "En esta version demo podes indicar si tenes una referencia visual; luego se conectara Storage."
+                  : "En esta version demo contamos fotos; luego se conectara Storage."}
               </p>
               <div className="mt-3 flex items-center gap-3">
                 <button
@@ -453,7 +505,7 @@ export function NewPublicationForm() {
               onClick={saveDraft}
               type="button"
             >
-              Guardar borrador
+              {isNeed ? "Guardar busqueda" : "Guardar borrador"}
             </button>
           </div>
           {saveStatus ? (

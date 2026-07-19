@@ -165,6 +165,11 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
   );
   const visibleListings = filteredListings.slice(0, 3);
   const visibleRequests = filteredRequests.slice(0, 2);
+  const publishNeedHref = `/publicaciones/nueva?tipo=need${
+    query.trim().length > 0
+      ? `&titulo=${encodeURIComponent(query.trim())}`
+      : ""
+  }`;
   const radarSignals: RadarSignal[] = [
     ...visibleListings.map((item) => ({
       id: item.id,
@@ -176,7 +181,9 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
     ...visibleRequests.map((request) => ({
       id: request.id,
       title: request.title,
-      href: "/publicaciones/nueva",
+      href: `/publicaciones/nueva?tipo=need&titulo=${encodeURIComponent(
+        request.title,
+      )}`,
       label: request.intentLabel,
       tone: request.intentLabel.toLowerCase().includes("trueque")
         ? "barter"
@@ -259,7 +266,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
               />
               <Link
                 className="ui-button ui-button-secondary min-h-11 px-3 py-2"
-                href="/publicaciones/nueva"
+                href={publishNeedHref}
               >
                 Publicar búsqueda
               </Link>
@@ -375,7 +382,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
               aceptaria trueque.
             </p>
           </div>
-          <Link className="ui-button ui-button-secondary" href="/publicaciones/nueva">
+          <Link className="ui-button ui-button-secondary" href={publishNeedHref}>
             Publicar busqueda
           </Link>
         </div>

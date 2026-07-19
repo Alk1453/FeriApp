@@ -57,6 +57,7 @@ La demo incorpora:
 - filtros interactivos de radar: `Todo`, `Ofertas`, `Buscan` y `Trueque`;
 - busqueda textual sobre productos, servicios, categorias e intenciones;
 - senales combinadas en el mapa: publicaciones y necesidades;
+- enlace desde el radar hacia el formulario con `Busco / necesito` precargado;
 - accion `Ofrecer trueque` dentro del detalle de publicacion.
 
 ## Regla de arquitectura
@@ -79,6 +80,21 @@ carga al usuario, pero sin confundir datos temporales con publicaciones reales.
 
 El radar no debe revelar ubicacion exacta. Debe mostrar distancia aproximada,
 zona o radio segun nivel de confianza y consentimiento.
+
+## Flujo recomendado
+
+Cuando una persona usa el radar y no encuentra lo que busca, FeriApp debe
+ofrecerle publicar esa necesidad con el menor esfuerzo posible.
+
+Ejemplo:
+
+```text
+Busca "bicicleta" en el radar -> Publicar busqueda -> formulario en modo
+Busco / necesito con el titulo sugerido.
+```
+
+Esto convierte una busqueda sin resultado en una senal util para la comunidad y
+para futuros oferentes.
 
 ## Riesgos a cuidar
 
