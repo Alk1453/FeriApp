@@ -211,9 +211,9 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
   const resultCount = filteredListings.length + filteredRequests.length;
 
   return (
-    <section className="overflow-hidden rounded-lg border border-primary/20 bg-white shadow-[0_18px_50px_rgba(32,35,31,0.08)]">
+    <section className="min-w-0 overflow-hidden rounded-lg border border-primary/20 bg-white shadow-[0_18px_50px_rgba(32,35,31,0.08)]">
       <div
-        className={`grid gap-5 p-5 sm:p-6 lg:p-7 ${
+        className={`grid min-w-0 gap-5 p-5 sm:p-6 lg:p-7 ${
           hero ? "lg:grid-cols-1" : "lg:grid-cols-[0.82fr_1.18fr]"
         }`}
       >
@@ -260,7 +260,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
         )}
 
         <div
-          className={`rounded-lg border border-border-soft bg-surface-soft p-2 sm:p-3 ${
+          className={`min-w-0 rounded-lg border border-border-soft bg-surface-soft p-2 sm:p-3 ${
             hero ? "flex flex-col" : ""
           }`}
         >
@@ -365,7 +365,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
         </div>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto border-t border-border-soft bg-white px-3 py-3 sm:px-5 sm:py-4 md:grid md:grid-cols-3 md:overflow-visible">
+      <div className="flex max-w-full gap-2 overflow-x-auto border-t border-border-soft bg-white px-3 py-3 sm:px-5 sm:py-4 md:grid md:grid-cols-3 md:overflow-visible">
         {visibleListings.map((item) => {
           const disclosure = getLocationDisclosure({
             item,
@@ -374,7 +374,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
 
           return (
             <Link
-              className="min-w-[220px] rounded-md border border-border-soft p-3 transition hover:border-primary hover:bg-primary-soft md:min-w-0"
+              className="w-[220px] shrink-0 rounded-md border border-border-soft p-3 transition hover:border-primary hover:bg-primary-soft md:w-auto md:shrink"
               href={`/publicaciones/${item.slug}`}
               key={item.id}
             >
@@ -388,7 +388,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
           );
         })}
         {visibleListings.length === 0 ? (
-          <div className="min-w-[240px] rounded-md border border-border-soft p-3 md:col-span-3 md:min-w-0">
+          <div className="w-[240px] shrink-0 rounded-md border border-border-soft p-3 md:col-span-3 md:w-auto md:shrink">
             <p className="text-sm font-extrabold">Sin ofertas para este filtro.</p>
             <p className="mt-1 text-xs leading-5 text-muted">
               Probá otra palabra o cambiá el modo del radar.
@@ -415,10 +415,10 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
             Publicar busqueda
           </Link>
         </div>
-        <div className="mt-3 flex gap-2 overflow-x-auto md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="mt-3 flex max-w-full gap-2 overflow-x-auto md:grid md:grid-cols-3 md:overflow-visible">
           {filteredRequests.map((request) => (
             <article
-              className="min-w-[250px] rounded-md border border-white/70 bg-white p-3 md:min-w-0"
+              className="w-[250px] shrink-0 rounded-md border border-white/70 bg-white p-3 md:w-auto md:shrink"
               key={request.id}
             >
               <div className="flex flex-wrap gap-2">
@@ -458,7 +458,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
             </article>
           ))}
           {filteredRequests.length === 0 ? (
-            <article className="min-w-[250px] rounded-md border border-white/70 bg-white p-3 md:col-span-3 md:min-w-0">
+            <article className="w-[250px] shrink-0 rounded-md border border-white/70 bg-white p-3 md:col-span-3 md:w-auto md:shrink">
               <h4 className="text-sm font-extrabold">
                 Sin búsquedas visibles con este filtro.
               </h4>

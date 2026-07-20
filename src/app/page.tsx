@@ -17,9 +17,9 @@ export default function Home() {
 
   return (
     <main className="ui-page pb-24 md:pb-0">
-      <section className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-4 sm:px-6 lg:px-8">
-        <header className="grid gap-4 rounded-lg border border-primary/20 bg-white p-3 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:gap-6 sm:p-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
-          <div className="flex flex-col justify-between gap-4 sm:gap-6">
+      <section className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 overflow-hidden px-4 py-4 sm:px-6 lg:px-8">
+        <header className="grid min-w-0 gap-4 rounded-lg border border-primary/20 bg-white p-3 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:gap-6 sm:p-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
+          <div className="flex min-w-0 flex-col justify-between gap-4 sm:gap-6">
             <div className="flex flex-row items-center gap-3 sm:gap-5">
               <div className="w-fit shrink-0 rounded-lg border border-primary/25 bg-white p-2 shadow-sm">
                 <img
@@ -61,8 +61,8 @@ export default function Home() {
           <LocalRadar listings={listings} variant="hero" />
         </header>
 
-        <section className="grid gap-4 lg:grid-cols-[280px_1fr] lg:gap-6">
-          <aside className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5">
+        <section className="grid min-w-0 gap-4 lg:grid-cols-[280px_1fr] lg:gap-6">
+          <aside className="min-w-0 overflow-hidden rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-[#f4c86b]">
@@ -86,12 +86,12 @@ export default function Home() {
             </div>
 
             <nav
-              className="mt-4 flex gap-2 overflow-x-auto sm:mt-8 sm:block sm:space-y-2 sm:overflow-visible"
+              className="mt-4 flex max-w-full gap-2 overflow-x-auto sm:mt-8 sm:block sm:space-y-2 sm:overflow-visible"
               aria-label="Módulos principales"
             >
               {modules.map((module, index) => (
                 <button
-                  className={`min-w-fit rounded-md px-3 py-2.5 text-left text-sm font-semibold sm:w-full ${
+                  className={`shrink-0 rounded-md px-3 py-2.5 text-left text-sm font-semibold sm:w-full ${
                     index === 0
                       ? "bg-[#f4c86b] text-[#1f211d]"
                       : "text-[#edf6ef] hover:bg-white/10"
@@ -112,8 +112,8 @@ export default function Home() {
             </div>
           </aside>
 
-          <div className="flex flex-col gap-4 sm:gap-6">
-            <header className="ui-surface p-3 sm:p-5">
+          <div className="flex min-w-0 flex-col gap-4 sm:gap-6">
+            <header className="ui-surface min-w-0 p-3 sm:p-5">
               <div className="flex flex-row items-center justify-between gap-3 xl:items-center">
                 <div>
                   <p className="text-sm font-semibold uppercase text-[#a1452e]">
@@ -146,8 +146,8 @@ export default function Home() {
               </div>
             </header>
 
-            <section className="grid gap-4 xl:grid-cols-[1fr_340px] xl:gap-6">
-              <div className="ui-surface">
+            <section className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_340px] xl:gap-6">
+              <div className="ui-surface min-w-0 overflow-hidden">
                 <div className="flex flex-row items-center justify-between gap-3 border-b border-border-soft px-4 py-3 sm:px-5 sm:py-4">
                   <div>
                     <h3 className="text-lg font-bold">Cerca tuyo</h3>
@@ -160,10 +160,10 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="flex gap-3 overflow-x-auto p-4 md:block md:divide-y md:divide-[#eee7dc] md:overflow-visible md:p-0">
+                <div className="flex max-w-full gap-3 overflow-x-auto p-4 md:block md:divide-y md:divide-[#eee7dc] md:overflow-visible md:p-0">
                   {listings.map((item) => (
                     <article
-                      className="grid min-w-[260px] gap-4 rounded-md border border-border-soft bg-white p-4 md:min-w-0 md:grid-cols-[1fr_auto] md:items-center md:rounded-none md:border-0 md:px-5 md:py-4"
+                      className="grid w-[260px] shrink-0 gap-4 rounded-md border border-border-soft bg-white p-4 md:w-auto md:shrink md:grid-cols-[1fr_auto] md:items-center md:rounded-none md:border-0 md:px-5 md:py-4"
                       key={item.title}
                     >
                       <div>
@@ -201,8 +201,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <aside className="flex gap-3 overflow-x-auto xl:flex-col xl:gap-6 xl:overflow-visible">
-                <section className="ui-surface-soft min-w-[260px] p-4 sm:p-5 xl:min-w-0">
+              <aside className="flex min-w-0 max-w-full gap-3 overflow-x-auto xl:flex-col xl:gap-6 xl:overflow-visible">
+                <section className="ui-surface-soft w-[260px] shrink-0 p-4 sm:p-5 xl:w-auto xl:shrink">
                   <h3 className="text-lg font-bold">Alertas del barrio</h3>
                   <div className="mt-3 space-y-2 sm:mt-4 sm:space-y-3">
                     {radar.map((alert) => (
@@ -220,7 +220,7 @@ export default function Home() {
                   </div>
                 </section>
 
-                <section className="ui-surface min-w-[260px] p-4 sm:p-5 xl:min-w-0">
+                <section className="ui-surface w-[260px] shrink-0 p-4 sm:p-5 xl:w-auto xl:shrink">
                   <h3 className="text-lg font-bold">Modo vecino</h3>
                   <p className="mt-2 text-sm leading-6 text-[#69665f]">
                     Para descubrir, guardar, seguir categorías y recomendar sin
@@ -242,7 +242,7 @@ export default function Home() {
                   </div>
                 </section>
 
-                <section className="min-w-[260px] rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5 xl:min-w-0">
+                <section className="w-[260px] shrink-0 rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5 xl:w-auto xl:shrink">
                   <h3 className="text-lg font-bold">Expansión modular</h3>
                   <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
                     El marketplace es el primer módulo de una red local de
