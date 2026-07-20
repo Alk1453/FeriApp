@@ -61,14 +61,14 @@ export default function Home() {
           <LocalRadar listings={listings} variant="hero" />
         </header>
 
-        <section className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          <aside className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white">
+        <section className="grid gap-4 lg:grid-cols-[280px_1fr] lg:gap-6">
+          <aside className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-[#f4c86b]">
                   Centro del radar
                 </p>
-                <h2 className="mt-2 text-2xl font-extrabold leading-tight">
+                <h2 className="mt-2 text-xl font-extrabold leading-tight sm:text-2xl">
                   Ubicate en el centro del radar
                 </h2>
               </div>
@@ -77,7 +77,7 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <p className="text-sm font-semibold text-[#dbe9df]">Tu zona</p>
               <button className="mt-3 flex w-full items-center justify-between rounded-md bg-white px-3 py-3 text-left text-sm font-semibold text-[#193f3a]">
                 Barrio Centro
@@ -85,10 +85,13 @@ export default function Home() {
               </button>
             </div>
 
-            <nav className="mt-8 space-y-2" aria-label="Módulos principales">
+            <nav
+              className="mt-4 flex gap-2 overflow-x-auto sm:mt-8 sm:block sm:space-y-2 sm:overflow-visible"
+              aria-label="Módulos principales"
+            >
               {modules.map((module, index) => (
                 <button
-                  className={`w-full rounded-md px-3 py-2.5 text-left text-sm font-semibold ${
+                  className={`min-w-fit rounded-md px-3 py-2.5 text-left text-sm font-semibold sm:w-full ${
                     index === 0
                       ? "bg-[#f4c86b] text-[#1f211d]"
                       : "text-[#edf6ef] hover:bg-white/10"
@@ -100,7 +103,7 @@ export default function Home() {
               ))}
             </nav>
 
-            <div className="mt-8 rounded-lg bg-white/10 p-4">
+            <div className="mt-4 rounded-lg bg-white/10 p-3 sm:mt-8 sm:p-4">
               <p className="text-sm font-semibold">Confianza local</p>
               <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
                 Una identidad para vecinos, comercios, moderadores y
@@ -109,26 +112,26 @@ export default function Home() {
             </div>
           </aside>
 
-          <div className="flex flex-col gap-6">
-            <header className="ui-surface p-4 sm:p-5">
-              <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <header className="ui-surface p-3 sm:p-5">
+              <div className="flex flex-row items-center justify-between gap-3 xl:items-center">
                 <div>
                   <p className="text-sm font-semibold uppercase text-[#a1452e]">
                     Buscar por categoría
                   </p>
-                  <h2 className="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">
+                  <h2 className="mt-2 hidden max-w-3xl text-3xl font-bold leading-tight sm:block sm:text-4xl">
                     Explorá productos, servicios y necesidades del barrio.
                   </h2>
                 </div>
                 <Link
-                  className="ui-button ui-button-primary w-full sm:w-fit"
+                  className="ui-button ui-button-primary min-h-10 shrink-0 px-3 py-2 sm:w-fit"
                   href="/publicaciones/nueva"
                 >
                   Publicar ahora
                 </Link>
               </div>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_140px]">
+              <div className="mt-3 grid gap-2 md:mt-5 md:grid-cols-[1fr_160px_140px] md:gap-3">
                 <input
                   className="ui-field px-4 text-sm"
                   placeholder="Buscar productos, servicios o donaciones"
@@ -143,12 +146,12 @@ export default function Home() {
               </div>
             </header>
 
-            <section className="grid gap-6 xl:grid-cols-[1fr_340px]">
+            <section className="grid gap-4 xl:grid-cols-[1fr_340px] xl:gap-6">
               <div className="ui-surface">
-                <div className="flex flex-col gap-2 border-b border-border-soft px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-row items-center justify-between gap-3 border-b border-border-soft px-4 py-3 sm:px-5 sm:py-4">
                   <div>
                     <h3 className="text-lg font-bold">Cerca tuyo</h3>
-                    <p className="text-sm text-[#69665f]">
+                    <p className="hidden text-sm text-[#69665f] sm:block">
                       Publicaciones priorizadas por distancia y confianza.
                     </p>
                   </div>
@@ -157,10 +160,10 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="divide-y divide-[#eee7dc]">
+                <div className="flex gap-3 overflow-x-auto p-4 md:block md:divide-y md:divide-[#eee7dc] md:overflow-visible md:p-0">
                   {listings.map((item) => (
                     <article
-                      className="grid gap-4 px-5 py-4 md:grid-cols-[1fr_auto] md:items-center"
+                      className="grid min-w-[260px] gap-4 rounded-md border border-border-soft bg-white p-4 md:min-w-0 md:grid-cols-[1fr_auto] md:items-center md:rounded-none md:border-0 md:px-5 md:py-4"
                       key={item.title}
                     >
                       <div>
@@ -198,13 +201,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <aside className="flex flex-col gap-6">
-                <section className="ui-surface-soft p-5">
+              <aside className="flex gap-3 overflow-x-auto xl:flex-col xl:gap-6 xl:overflow-visible">
+                <section className="ui-surface-soft min-w-[260px] p-4 sm:p-5 xl:min-w-0">
                   <h3 className="text-lg font-bold">Alertas del barrio</h3>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-3 space-y-2 sm:mt-4 sm:space-y-3">
                     {radar.map((alert) => (
                       <label
-                        className="flex items-start gap-3 rounded-md border border-border-soft bg-white p-3 text-sm leading-6"
+                        className="flex items-start gap-3 rounded-md border border-border-soft bg-white p-3 text-sm leading-5 sm:leading-6"
                         key={alert}
                       >
                         <input
@@ -217,7 +220,7 @@ export default function Home() {
                   </div>
                 </section>
 
-                <section className="ui-surface p-5">
+                <section className="ui-surface min-w-[260px] p-4 sm:p-5 xl:min-w-0">
                   <h3 className="text-lg font-bold">Modo vecino</h3>
                   <p className="mt-2 text-sm leading-6 text-[#69665f]">
                     Para descubrir, guardar, seguir categorías y recomendar sin
@@ -239,7 +242,7 @@ export default function Home() {
                   </div>
                 </section>
 
-                <section className="rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-5 text-white">
+                <section className="min-w-[260px] rounded-lg border border-[#d9d0c0] bg-[#193f3a] p-4 text-white sm:p-5 xl:min-w-0">
                   <h3 className="text-lg font-bold">Expansión modular</h3>
                   <p className="mt-2 text-sm leading-6 text-[#dbe9df]">
                     El marketplace es el primer módulo de una red local de

@@ -365,7 +365,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
         </div>
       </div>
 
-      <div className="grid gap-2 border-t border-border-soft bg-white px-5 py-4 md:grid-cols-3">
+      <div className="flex gap-2 overflow-x-auto border-t border-border-soft bg-white px-3 py-3 sm:px-5 sm:py-4 md:grid md:grid-cols-3 md:overflow-visible">
         {visibleListings.map((item) => {
           const disclosure = getLocationDisclosure({
             item,
@@ -374,7 +374,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
 
           return (
             <Link
-              className="rounded-md border border-border-soft p-3 transition hover:border-primary hover:bg-primary-soft"
+              className="min-w-[220px] rounded-md border border-border-soft p-3 transition hover:border-primary hover:bg-primary-soft md:min-w-0"
               href={`/publicaciones/${item.slug}`}
               key={item.id}
             >
@@ -388,7 +388,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
           );
         })}
         {visibleListings.length === 0 ? (
-          <div className="rounded-md border border-border-soft p-3 md:col-span-3">
+          <div className="min-w-[240px] rounded-md border border-border-soft p-3 md:col-span-3 md:min-w-0">
             <p className="text-sm font-extrabold">Sin ofertas para este filtro.</p>
             <p className="mt-1 text-xs leading-5 text-muted">
               Probá otra palabra o cambiá el modo del radar.
@@ -397,25 +397,28 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
         ) : null}
       </div>
 
-      <div className="border-t border-border-soft bg-accent-soft px-5 py-4">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-border-soft bg-accent-soft px-3 py-3 sm:px-5 sm:py-4">
+        <div className="flex flex-row items-center justify-between gap-3">
           <div>
             <h3 className="text-base font-extrabold">
               Busquedas y necesidades cerca
             </h3>
-            <p className="text-sm leading-6 text-muted">
+            <p className="hidden text-sm leading-6 text-muted sm:block">
               El radar tambien muestra demanda real: quien busca, necesita o
               aceptaria trueque.
             </p>
           </div>
-          <Link className="ui-button ui-button-secondary" href={publishNeedHref}>
+          <Link
+            className="ui-button ui-button-secondary min-h-10 shrink-0 px-3 py-2"
+            href={publishNeedHref}
+          >
             Publicar busqueda
           </Link>
         </div>
-        <div className="mt-4 grid gap-2 md:grid-cols-3">
+        <div className="mt-3 flex gap-2 overflow-x-auto md:grid md:grid-cols-3 md:overflow-visible">
           {filteredRequests.map((request) => (
             <article
-              className="rounded-md border border-white/70 bg-white p-3"
+              className="min-w-[250px] rounded-md border border-white/70 bg-white p-3 md:min-w-0"
               key={request.id}
             >
               <div className="flex flex-wrap gap-2">
@@ -455,7 +458,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
             </article>
           ))}
           {filteredRequests.length === 0 ? (
-            <article className="rounded-md border border-white/70 bg-white p-3 md:col-span-3">
+            <article className="min-w-[250px] rounded-md border border-white/70 bg-white p-3 md:col-span-3 md:min-w-0">
               <h4 className="text-sm font-extrabold">
                 Sin búsquedas visibles con este filtro.
               </h4>
