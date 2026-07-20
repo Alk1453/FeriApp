@@ -43,4 +43,4 @@ Configuracion recomendada al importar el repositorio:
 - `src/shared`: reglas compartidas y dominio comun.
 - `docs`: reglas tecnicas del proyecto.
 
-Ultimo disparador de demo: radar local y niveles de usuario.
+Ultimo disparador de demo: correccion visual del hub movil y radar local.
