@@ -18,13 +18,13 @@ export default function Home() {
   return (
     <main className="ui-page pb-24 md:pb-0">
       <section className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-4 sm:px-6 lg:px-8">
-        <header className="grid gap-6 rounded-lg border border-primary/20 bg-white p-5 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:p-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
-          <div className="flex flex-col justify-between gap-6">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+        <header className="grid gap-4 rounded-lg border border-primary/20 bg-white p-3 shadow-[0_18px_50px_rgba(32,35,31,0.08)] sm:gap-6 sm:p-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
+          <div className="flex flex-col justify-between gap-4 sm:gap-6">
+            <div className="flex flex-row items-center gap-3 sm:gap-5">
               <div className="w-fit shrink-0 rounded-lg border border-primary/25 bg-white p-2 shadow-sm">
                 <img
                   alt="FeriApp"
-                  className="h-auto w-48"
+                  className="h-auto w-28 sm:w-48"
                   src="/brand/logo-primary.svg"
                 />
               </div>
@@ -32,17 +32,17 @@ export default function Home() {
                 <p className="text-sm font-extrabold uppercase text-primary-strong">
                   La feria digital de tu barrio
                 </p>
-                <h1 className="mt-2 max-w-3xl text-4xl font-black leading-tight text-foreground sm:text-5xl">
+                <h1 className="mt-1 max-w-3xl text-2xl font-black leading-tight text-foreground sm:mt-2 sm:text-5xl">
                   Buscá, ofrecé y conectá cerca tuyo.
                 </h1>
-                <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+                <p className="mt-3 hidden max-w-2xl text-base leading-7 text-muted sm:block">
                   Mirá en el radar ventas, servicios, trueques, donaciones y
                   personas que buscan lo que vos podés ofrecer.
                 </p>
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 xl:max-w-xl">
+            <div className="grid gap-2 sm:grid-cols-2 sm:gap-3 xl:max-w-xl">
               <Link
                 className="ui-button ui-button-primary w-full"
                 href="/publicaciones"

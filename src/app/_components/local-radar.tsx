@@ -259,8 +259,16 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
           </div>
         )}
 
-        <div className="rounded-lg border border-border-soft bg-surface-soft p-3">
-          <div className="mb-3 grid gap-3 rounded-md bg-white p-3">
+        <div
+          className={`rounded-lg border border-border-soft bg-surface-soft p-2 sm:p-3 ${
+            hero ? "flex flex-col" : ""
+          }`}
+        >
+          <div
+            className={`grid gap-2 rounded-md bg-white p-2 sm:gap-3 sm:p-3 ${
+              hero ? "order-2 mt-2" : "mb-3"
+            }`}
+          >
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-extrabold uppercase text-primary-strong">
@@ -277,7 +285,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
 
             <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
               <input
-                className="ui-field px-3 text-sm"
+                className="ui-field min-h-10 px-3 text-sm"
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Ej: bicicleta, electricista, herramientas"
                 value={query}
@@ -290,10 +298,10 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
               </Link>
             </div>
 
-            <div className="grid gap-2 sm:grid-cols-4">
+            <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
               {radarModes.map((mode) => (
                 <button
-                  className={`rounded-md border px-3 py-2 text-sm font-extrabold transition ${
+                  className={`min-h-10 rounded-md border px-2 py-1.5 text-xs font-extrabold transition sm:px-3 sm:py-2 sm:text-sm ${
                     activeMode === mode.value
                       ? "border-primary bg-primary text-white"
                       : "border-border-soft bg-white text-foreground hover:border-primary"
@@ -309,8 +317,8 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
           </div>
 
           <div
-            className={`relative overflow-hidden rounded-lg bg-[radial-gradient(circle_at_center,#ffffff_0,#f1f4ee_40%,#e8f3ea_100%)] ${
-              hero ? "min-h-[380px] sm:min-h-[480px]" : "min-h-[360px] sm:min-h-[430px] lg:min-h-[520px]"
+            className={`relative order-1 overflow-hidden rounded-lg bg-[radial-gradient(circle_at_center,#ffffff_0,#f1f4ee_40%,#e8f3ea_100%)] ${
+              hero ? "min-h-[500px] sm:min-h-[540px]" : "min-h-[420px] sm:min-h-[430px] lg:min-h-[520px]"
             }`}
           >
             <div className="absolute left-1/2 top-1/2 size-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/20" />
@@ -323,7 +331,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
 
             {radarSignals.map((signal, index) => (
               <Link
-                className={`absolute ${pointPositions[index]} group z-20 flex max-w-44 items-start gap-2 rounded-lg border border-border-soft bg-white/95 p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-primary`}
+                className={`absolute ${pointPositions[index]} group z-20 flex max-w-36 items-start gap-1.5 rounded-lg border border-border-soft bg-white/95 p-2 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-primary sm:max-w-44 sm:gap-2 sm:p-3`}
                 href={signal.href}
                 key={signal.id}
               >
@@ -333,7 +341,7 @@ export function LocalRadar({ listings, variant = "full" }: LocalRadarProps) {
                   )}`}
                 />
                 <span>
-                  <span className="block text-xs font-extrabold leading-4">
+                  <span className="block text-[11px] font-extrabold leading-4 sm:text-xs">
                     {signal.title}
                   </span>
                   <span className="mt-1 block text-[11px] font-bold text-primary-strong">
